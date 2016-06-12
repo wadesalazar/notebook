@@ -1,0 +1,115 @@
+{
+  "paragraphs": [
+    {
+      "title": "Clean up, create and populate Phoenix tables for timeseries",
+      "text": "%phoenix\n\ndrop view \"timeseries\"\ndrop table if exists \"sinusoid\"\n\ncreate view \"timeseries\"(\n   \n     \"cf\".\"t\"   varchar(10),\n     \"cf\".\"v\" varchar(10),\n      \"cf\".\"id\" varchar(10),\n\n     \"PKEY\" varchar(10),\n CONSTRAINT pk PRIMARY KEY (PKEY)\n)\n\n\ncreate table if not exists \"sinusoid\"(\n \"cf\".\"timestamp\" TimeStamp,\n \"cf\".\"value\" Decimal,\n \"cf\".\"metric\" varchar(10),\n \"PKEY\" varchar(50)\n CONSTRAINT pk PRIMARY KEY (PKEY)\n)\n\nupsert into \"sinusoid\" select TO_DATE(TO_CHAR(TO_NUMBER(\"t\")/1000,\u0027#\u0027),\u0027ssssssssss\u0027),TO_NUMBER(\"v\"),\"id\",\"PKEY\" from \"timeseries\"",
+      "dateUpdated": "Jun 12, 2016 5:34:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465770666519_-645174426",
+      "id": "20160612-173106_212826101",
+      "dateCreated": "Jun 12, 2016 5:31:06 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Display select timeseries",
+      "text": "\n%phoenix \n\nselect * from \"sinusoid\"\n\nwhere \"timestamp\" \u003e TO_DATE(\u00272016-05-26 06:45:00.000\u0027)\n\n",
+      "dateUpdated": "Jun 12, 2016 5:35:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorHide": false,
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465770688225_-1465059008",
+      "id": "20160612-173128_833785478",
+      "dateCreated": "Jun 12, 2016 5:31:28 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "dateUpdated": "Jun 12, 2016 5:36:03 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465770779348_-509942028",
+      "id": "20160612-173259_1870647229",
+      "dateCreated": "Jun 12, 2016 5:32:59 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Phoenix \u0026 HBase Timeseries",
+  "id": "2BPCUQAQ5",
+  "angularObjects": {
+    "2BQCH17EH:shared_process": [],
+    "2BKYFDS7Q:shared_process": [],
+    "2BN27KE9W:shared_process": [],
+    "2BNR2S1SA:shared_process": [],
+    "2BQSD9PWH:shared_process": [],
+    "2BNX8S4PE:shared_process": [],
+    "2BKYN4BSP:shared_process": [],
+    "2BMGY8XB1:shared_process": [],
+    "2BMJAS6GB:shared_process": [],
+    "2BQ6M2APK:shared_process": [],
+    "2BP8PS6E4:shared_process": [],
+    "2BM8TNDU6:shared_process": [],
+    "2BN3F679N:shared_process": [],
+    "2BM19HA25:shared_process": [],
+    "2BPTH31JC:shared_process": [],
+    "2BPD56EQM:shared_process": [],
+    "2BNSFTY5W:shared_process": [],
+    "2BQ8KHB3A:shared_process": [],
+    "2BQXFYNMJ:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

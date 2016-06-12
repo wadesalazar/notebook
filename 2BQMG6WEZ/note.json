@@ -1,0 +1,144 @@
+{
+  "paragraphs": [
+    {
+      "title": "Load deps",
+      "text": "%dep\nz.reset\nz.addRepo(\"hbase-spark\").url(\"https://repository.apache.org/content/repositories/snapshots/\")\nz.load(\"org.apache.hbase:hbase-spark:2.0.0-SNAPSHOT\")",
+      "dateUpdated": "Jun 12, 2016 5:13:40 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465768765863_-1839375360",
+      "id": "20160612-165925_631379268",
+      "dateCreated": "Jun 12, 2016 4:59:25 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Import deps",
+      "text": "%spark\nimport org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer",
+      "dateUpdated": "Jun 12, 2016 5:13:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465768787914_1418324226",
+      "id": "20160612-165947_1682512204",
+      "dateCreated": "Jun 12, 2016 4:59:47 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Grab  snapshot from HBase and create SQL table",
+      "text": "%spark\n\n//create a Hbase conf file and set parameters for the scan\nval conf2 \u003d HBaseConfiguration.create()\nconf2.set(TableInputFormat.INPUT_TABLE, \"test\")\nconf2.set(TableInputFormat.SCAN_ROW_START, \"Simulation Examples.Functions.Ramp1-146491000\")\n\n//create a RDD from the table scan\nval hBaseRDD2 \u003d sc.newAPIHadoopRDD(conf2, classOf[org.apache.hadoop.hbase.mapreduce.TableInputFormat],\nclassOf[org.apache.hadoop.hbase.io.ImmutableBytesWritable],\nclassOf[org.apache.hadoop.hbase.client.Result])\n\n//exract and print triple\nval i2 \u003d hBaseRDD2.map(row \u003d\u003e{\n    //retrieve the latest values from each offset cell    \n    for(i \u003c- 0 to 9 if row._2.containsNonEmptyColumn(i.toString.getBytes(),\"id\".getBytes())) yield {\n        //String.valueOf(Array(0).map(_.toByte),\"v\".getBytes()).map(_.toChar)\n        //String.valueOf(row._2.getValue(\"9\".getBytes(),\"id\".getBytes()).map(_.toChar))\n        ((String.valueOf(row._2.getValue(i.toString.getBytes,\"id\".getBytes()).map(_.toChar))),\n        (String.valueOf(row._2.getValue(i.toString.getBytes,\"v\".getBytes()).map(_.toChar))),\n        (String.valueOf(row._2.getValue(i.toString.getBytes,\"t\".getBytes()).map(_.toChar))))\n    }\n\n//convert to RDD[List[List[String]]] \n}).map(n \u003d\u003e {\n    n.toList\n})\n\ncase class Sample( id:String, v:String, t:String)\nval i3 \u003d i2.flatMap(n \u003d\u003e {\n    n\n}).map(n \u003d\u003e \n    Sample(n._1,n._2,n._3)\n)\ni3.count\ni3.toDF().registerTempTable(\"ts_data2\")",
+      "dateUpdated": "Jun 12, 2016 5:14:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465768810258_-1360485573",
+      "id": "20160612-170010_2057689049",
+      "dateCreated": "Jun 12, 2016 5:00:10 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Query the table \u0026 filter",
+      "text": "%sql\n\nSELECT * from ts_data2\n\nWHERE id \u003d \"Simulation Examples.Functions.Ramp2\" AND t \u003e \"1464911340935\"",
+      "dateUpdated": "Jun 12, 2016 5:14:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465769580501_-151132768",
+      "id": "20160612-171300_1878159836",
+      "dateCreated": "Jun 12, 2016 5:13:00 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "HBase Historian Script 2",
+  "id": "2BQMG6WEZ",
+  "angularObjects": {
+    "2BQCH17EH:shared_process": [],
+    "2BKYFDS7Q:shared_process": [],
+    "2BN27KE9W:shared_process": [],
+    "2BNR2S1SA:shared_process": [],
+    "2BQSD9PWH:shared_process": [],
+    "2BNX8S4PE:shared_process": [],
+    "2BKYN4BSP:shared_process": [],
+    "2BMGY8XB1:shared_process": [],
+    "2BMJAS6GB:shared_process": [],
+    "2BQ6M2APK:shared_process": [],
+    "2BP8PS6E4:shared_process": [],
+    "2BM8TNDU6:shared_process": [],
+    "2BN3F679N:shared_process": [],
+    "2BM19HA25:shared_process": [],
+    "2BPTH31JC:shared_process": [],
+    "2BPD56EQM:shared_process": [],
+    "2BNSFTY5W:shared_process": [],
+    "2BQ8KHB3A:shared_process": [],
+    "2BQXFYNMJ:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
