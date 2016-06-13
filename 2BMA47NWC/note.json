@@ -2,7 +2,7 @@
   "paragraphs": [
     {
       "text": "%md\n\nThis is a collection of notebooks to deploy with HWX SE demos\n",
-      "dateUpdated": "Jun 12, 2016 7:07:59 PM",
+      "dateUpdated": "Jun 12, 2016 7:10:14 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -15,7 +15,8 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true
       },
       "settings": {
         "params": {},
@@ -29,13 +30,28 @@
         "msg": "\u003cp\u003eThis is a collection of notebooks to deploy with HWX SE demos\u003c/p\u003e\n"
       },
       "dateCreated": "Jun 12, 2016 7:07:26 PM",
-      "dateStarted": "Jun 12, 2016 7:07:59 PM",
-      "dateFinished": "Jun 12, 2016 7:08:00 PM",
+      "dateStarted": "Jun 12, 2016 7:10:09 PM",
+      "dateFinished": "Jun 12, 2016 7:10:09 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "config": {},
+      "dateUpdated": "Jun 12, 2016 7:10:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala",
+        "editorHide": true
+      },
       "settings": {
         "params": {},
         "forms": {}
@@ -43,7 +59,8 @@
       "jobName": "paragraph_1465776479333_1946319839",
       "id": "20160612-190759_1485457114",
       "dateCreated": "Jun 12, 2016 7:07:59 PM",
-      "status": "READY",
+      "dateStarted": "Jun 12, 2016 7:10:09 PM",
+      "status": "RUNNING",
       "progressUpdateIntervalMs": 500
     }
   ],
