@@ -1,0 +1,75 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\nThis is a collection of notebooks to deploy with HWX SE demos\n",
+      "dateUpdated": "Jun 12, 2016 7:07:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465776446748_-1377403315",
+      "id": "20160612-190726_957307491",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003cp\u003eThis is a collection of notebooks to deploy with HWX SE demos\u003c/p\u003e\n"
+      },
+      "dateCreated": "Jun 12, 2016 7:07:26 PM",
+      "dateStarted": "Jun 12, 2016 7:07:59 PM",
+      "dateFinished": "Jun 12, 2016 7:08:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465776479333_1946319839",
+      "id": "20160612-190759_1485457114",
+      "dateCreated": "Jun 12, 2016 7:07:59 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "First Git Notebook",
+  "id": "2BMA47NWC",
+  "angularObjects": {
+    "2BQCH17EH:shared_process": [],
+    "2BKYFDS7Q:shared_process": [],
+    "2BN27KE9W:shared_process": [],
+    "2BNR2S1SA:shared_process": [],
+    "2BQSD9PWH:shared_process": [],
+    "2BNX8S4PE:shared_process": [],
+    "2BKYN4BSP:shared_process": [],
+    "2BMJAS6GB:shared_process": [],
+    "2BMGY8XB1:shared_process": [],
+    "2BQ6M2APK:shared_process": [],
+    "2BP8PS6E4:shared_process": [],
+    "2BM8TNDU6:shared_process": [],
+    "2BN3F679N:shared_process": [],
+    "2BM19HA25:shared_process": [],
+    "2BPTH31JC:shared_process": [],
+    "2BNSFTY5W:shared_process": [],
+    "2BPD56EQM:shared_process": [],
+    "2BQ8KHB3A:shared_process": [],
+    "2BQXFYNMJ:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
