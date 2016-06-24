@@ -3,7 +3,7 @@
     {
       "title": "Load deps",
       "text": "%dep\nz.reset\nz.addRepo(\"hbase-spark\").url(\"https://repository.apache.org/content/repositories/snapshots/\")\nz.load(\"org.apache.hbase:hbase-spark:2.0.0-SNAPSHOT\")",
-      "dateUpdated": "Jun 12, 2016 4:56:24 PM",
+      "dateUpdated": "Jun 23, 2016 10:31:19 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -17,7 +17,8 @@
         },
         "enabled": true,
         "title": true,
-        "editorHide": true
+        "editorHide": false,
+        "editorMode": "ace/mode/scala"
       },
       "settings": {
         "params": {},
@@ -25,14 +26,21 @@
       },
       "jobName": "paragraph_1465768436914_-1202630133",
       "id": "20160612-165356_324797851",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "DepInterpreter(%dep) deprecated. Remove dependencies and repositories through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Add repository through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@36aeee98\n"
+      },
       "dateCreated": "Jun 12, 2016 4:53:56 PM",
-      "status": "READY",
+      "dateStarted": "Jun 23, 2016 10:31:20 PM",
+      "dateFinished": "Jun 23, 2016 10:31:56 PM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Grab a snapshot of the HBase table",
       "text": "import org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\n\n//create a Hbase conf file and set parameters for the scan\nval conf2 \u003d HBaseConfiguration.create()\nconf2.set(TableInputFormat.INPUT_TABLE, \"test\")\nconf2.set(TableInputFormat.SCAN_ROW_START, \"Simulation Examples.Functions.Ramp1-146491000\")\nconf2.set(TableInputFormat.SCAN_ROW_STOP, \"Simulation Examples.Functions.Ramp1-146492000\")\n\n//create a RDD from the table scan\nval hBaseRDD2 \u003d sc.newAPIHadoopRDD(conf2, classOf[org.apache.hadoop.hbase.mapreduce.TableInputFormat],\nclassOf[org.apache.hadoop.hbase.io.ImmutableBytesWritable],\nclassOf[org.apache.hadoop.hbase.client.Result])\n\n//exract and print triple\nval i2 \u003d hBaseRDD2.map(row \u003d\u003e{\n    //retrieve the latest values from each offset cell    \n    for(i \u003c- 0 to 9 if row._2.containsNonEmptyColumn(i.toString.getBytes(),\"id\".getBytes())) yield {\n        //String.valueOf(Array(0).map(_.toByte),\"v\".getBytes()).map(_.toChar)\n        //String.valueOf(row._2.getValue(\"9\".getBytes(),\"id\".getBytes()).map(_.toChar))\n        ((String.valueOf(row._2.getValue(i.toString.getBytes,\"id\".getBytes()).map(_.toChar))),\n        (String.valueOf(row._2.getValue(i.toString.getBytes,\"v\".getBytes()).map(_.toChar))),\n        (String.valueOf(row._2.getValue(i.toString.getBytes,\"t\".getBytes()).map(_.toChar))))\n    }\n\n//convert to RDD[List[List[String]]] \n}).map(n \u003d\u003e {\n    n.toList\n})",
-      "dateUpdated": "Jun 12, 2016 4:56:23 PM",
+      "dateUpdated": "Jun 23, 2016 10:11:49 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -47,7 +55,7 @@
         "enabled": true,
         "editorMode": "ace/mode/scala",
         "title": true,
-        "editorHide": true
+        "editorHide": false
       },
       "settings": {
         "params": {},
@@ -55,14 +63,21 @@
       },
       "jobName": "paragraph_1465768445088_-66451307",
       "id": "20160612-165405_1734641709",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\nconf2: org.apache.hadoop.conf.Configuration \u003d Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, yarn-default.xml, yarn-site.xml, hdfs-default.xml, hdfs-site.xml, hbase-default.xml, hbase-site.xml\nhBaseRDD2: org.apache.spark.rdd.RDD[(org.apache.hadoop.hbase.io.ImmutableBytesWritable, org.apache.hadoop.hbase.client.Result)] \u003d NewHadoopRDD[0] at newAPIHadoopRDD at \u003cconsole\u003e:38\ni2: org.apache.spark.rdd.RDD[List[(String, String, String)]] \u003d MapPartitionsRDD[2] at map at \u003cconsole\u003e:51\n"
+      },
       "dateCreated": "Jun 12, 2016 4:54:05 PM",
-      "status": "READY",
+      "dateStarted": "Jun 23, 2016 10:11:49 PM",
+      "dateFinished": "Jun 23, 2016 10:14:52 PM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Print a few tuples",
       "text": "i2.count\n//print each triple to the screen  \ni2.take(1).foreach(n \u003d\u003e {\n    var itr \u003d n.iterator\n    while(itr.hasNext){\n        val ln \u003d itr.next\n        println(ln._1 + \" \" + ln._2 + \" \" + ln._3)\n    }\n})",
-      "dateUpdated": "Jun 12, 2016 4:56:45 PM",
+      "dateUpdated": "Jun 23, 2016 10:16:00 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -76,7 +91,7 @@
         },
         "enabled": true,
         "title": true,
-        "editorHide": true
+        "editorHide": false
       },
       "settings": {
         "params": {},
@@ -84,14 +99,21 @@
       },
       "jobName": "paragraph_1465768484559_1395792083",
       "id": "20160612-165444_700622531",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "org.apache.hadoop.hbase.client.RetriesExhaustedException: Can\u0027t get the locations\n\tat org.apache.hadoop.hbase.client.RpcRetryingCallerWithReadReplicas.getRegionLocations(RpcRetryingCallerWithReadReplicas.java:310)\n\tat org.apache.hadoop.hbase.client.ScannerCallableWithReplicas.call(ScannerCallableWithReplicas.java:156)\n\tat org.apache.hadoop.hbase.client.ScannerCallableWithReplicas.call(ScannerCallableWithReplicas.java:60)\n\tat org.apache.hadoop.hbase.client.RpcRetryingCallerImpl.callWithoutRetries(RpcRetryingCallerImpl.java:165)\n\tat org.apache.hadoop.hbase.client.ClientScanner.call(ClientScanner.java:311)\n\tat org.apache.hadoop.hbase.client.ClientScanner.nextScanner(ClientScanner.java:286)\n\tat org.apache.hadoop.hbase.client.ClientScanner.initializeScannerInConstruction(ClientScanner.java:162)\n\tat org.apache.hadoop.hbase.client.ClientScanner.\u003cinit\u003e(ClientScanner.java:155)\n\tat org.apache.hadoop.hbase.client.ClientSimpleScanner.\u003cinit\u003e(ClientSimpleScanner.java:40)\n\tat org.apache.hadoop.hbase.client.HTable.getScanner(HTable.java:382)\n\tat org.apache.hadoop.hbase.MetaTableAccessor.scanMeta(MetaTableAccessor.java:774)\n\tat org.apache.hadoop.hbase.MetaTableAccessor.scanMeta(MetaTableAccessor.java:702)\n\tat org.apache.hadoop.hbase.MetaTableAccessor.getTableRegionsAndLocations(MetaTableAccessor.java:624)\n\tat org.apache.hadoop.hbase.MetaTableAccessor.getTableRegionsAndLocations(MetaTableAccessor.java:575)\n\tat org.apache.hadoop.hbase.client.HRegionLocator.getAllRegionLocations(HRegionLocator.java:86)\n\tat org.apache.hadoop.hbase.util.RegionSizeCalculator.init(RegionSizeCalculator.java:99)\n\tat org.apache.hadoop.hbase.util.RegionSizeCalculator.\u003cinit\u003e(RegionSizeCalculator.java:81)\n\tat org.apache.hadoop.hbase.mapreduce.TableInputFormatBase.getSplits(TableInputFormatBase.java:251)\n\tat org.apache.hadoop.hbase.mapreduce.TableInputFormat.getSplits(TableInputFormat.java:239)\n\tat org.apache.spark.rdd.NewHadoopRDD.getPartitions(NewHadoopRDD.scala:120)\n\tat org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:242)\n\tat org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:240)\n\tat scala.Option.getOrElse(Option.scala:120)\n\tat org.apache.spark.rdd.RDD.partitions(RDD.scala:240)\n\tat org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n\tat org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:242)\n\tat org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:240)\n\tat scala.Option.getOrElse(Option.scala:120)\n\tat org.apache.spark.rdd.RDD.partitions(RDD.scala:240)\n\tat org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n\tat org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:242)\n\tat org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:240)\n\tat scala.Option.getOrElse(Option.scala:120)\n\tat org.apache.spark.rdd.RDD.partitions(RDD.scala:240)\n\tat org.apache.spark.SparkContext.runJob(SparkContext.scala:1952)\n\tat org.apache.spark.rdd.RDD.count(RDD.scala:1164)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:43)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:49)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:51)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:53)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:55)\n\tat $iwC$$iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:57)\n\tat $iwC$$iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:59)\n\tat $iwC$$iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:61)\n\tat $iwC$$iwC.\u003cinit\u003e(\u003cconsole\u003e:63)\n\tat $iwC.\u003cinit\u003e(\u003cconsole\u003e:65)\n\tat \u003cinit\u003e(\u003cconsole\u003e:67)\n\tat .\u003cinit\u003e(\u003cconsole\u003e:71)\n\tat .\u003cclinit\u003e(\u003cconsole\u003e)\n\tat .\u003cinit\u003e(\u003cconsole\u003e:7)\n\tat .\u003cclinit\u003e(\u003cconsole\u003e)\n\tat $print(\u003cconsole\u003e)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:606)\n\tat org.apache.spark.repl.SparkIMain$ReadEvalPrint.call(SparkIMain.scala:1065)\n\tat org.apache.spark.repl.SparkIMain$Request.loadAndRun(SparkIMain.scala:1346)\n\tat org.apache.spark.repl.SparkIMain.loadAndRunReq$1(SparkIMain.scala:840)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:871)\n\tat org.apache.spark.repl.SparkIMain.interpret(SparkIMain.scala:819)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpretInput(SparkInterpreter.java:804)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:747)\n\tat org.apache.zeppelin.spark.SparkInterpreter.interpret(SparkInterpreter.java:740)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:94)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:341)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:176)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler$1.run(FIFOScheduler.java:139)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:262)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)\n\tat java.lang.Thread.run(Thread.java:745)\n\n"
+      },
       "dateCreated": "Jun 12, 2016 4:54:44 PM",
-      "status": "READY",
+      "dateStarted": "Jun 23, 2016 10:16:00 PM",
+      "dateFinished": "Jun 23, 2016 10:17:51 PM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Cast to DF with the provided schema class and then register as temp table",
       "text": "// Provide a class to describe the schema of the RDD\ncase class Sample( id:String, v:String, t:String)\nval i3 \u003d i2.flatMap(n \u003d\u003e {\n    n\n}).map(n \u003d\u003e \n    Sample(n._1,n._2,n._3)\n)\n\n// Convert RDD to a dataframe then to a table \ni3.toDF().registerTempTable(\"ts_data\")",
-      "dateUpdated": "Jun 12, 2016 4:57:28 PM",
+      "dateUpdated": "Jun 23, 2016 10:09:41 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -106,7 +128,7 @@
         "enabled": true,
         "editorMode": "ace/mode/scala",
         "title": true,
-        "editorHide": true
+        "editorHide": false
       },
       "settings": {
         "params": {},
@@ -121,7 +143,7 @@
     {
       "title": "Query Table",
       "text": "%sql\n\nselect * from ts_data\n\nORDER BY t, id",
-      "dateUpdated": "Jun 12, 2016 4:58:28 PM",
+      "dateUpdated": "Jun 23, 2016 10:09:45 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -136,7 +158,7 @@
         "enabled": true,
         "editorMode": "ace/mode/scala",
         "title": true,
-        "editorHide": true
+        "editorHide": false
       },
       "settings": {
         "params": {},
@@ -179,26 +201,27 @@
   ],
   "name": "HBase Historian Script 1",
   "id": "2BP8ZY84F",
+  "lastReplName": {
+    "value": "dep"
+  },
   "angularObjects": {
-    "2BQCH17EH:shared_process": [],
-    "2BKYFDS7Q:shared_process": [],
-    "2BN27KE9W:shared_process": [],
-    "2BNR2S1SA:shared_process": [],
-    "2BQSD9PWH:shared_process": [],
-    "2BNX8S4PE:shared_process": [],
-    "2BKYN4BSP:shared_process": [],
-    "2BMGY8XB1:shared_process": [],
-    "2BMJAS6GB:shared_process": [],
-    "2BQ6M2APK:shared_process": [],
-    "2BP8PS6E4:shared_process": [],
-    "2BM8TNDU6:shared_process": [],
-    "2BN3F679N:shared_process": [],
-    "2BM19HA25:shared_process": [],
-    "2BPTH31JC:shared_process": [],
-    "2BPD56EQM:shared_process": [],
-    "2BNSFTY5W:shared_process": [],
-    "2BQ8KHB3A:shared_process": [],
-    "2BQXFYNMJ:shared_process": []
+    "2BN7JCHM6:shared_process": [],
+    "2BRP9DAPW:shared_process": [],
+    "2BP9XS4UT:shared_process": [],
+    "2BPWHDB6M:shared_process": [],
+    "2BR9YSU2N:shared_process": [],
+    "2BNUVHBNW:shared_process": [],
+    "2BR9Q5PX5:shared_process": [],
+    "2BPAVC7GU:shared_process": [],
+    "2BRHH2S6G:shared_process": [],
+    "2BRPTVWH4:shared_process": [],
+    "2BNE1DABD:shared_process": [],
+    "2BQMN8B9Y:shared_process": [],
+    "2BP4W8X9D:shared_process": [],
+    "2BP9MH176:shared_process": [],
+    "2BRHZ9VEH:shared_process": [],
+    "2BNSRHX2C:shared_process": [],
+    "2BR6Z8Y6Q:shared_process": []
   },
   "config": {},
   "info": {}

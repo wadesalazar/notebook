@@ -1,8 +1,8 @@
 {
   "paragraphs": [
     {
-      "text": "(1 to 10)\n\n// Multiply each by 3\n(1 to 10).map(_ * 3)\n\n// flatMap flattens the result\n(1 to 10).map(n \u003d\u003e List(n, n * 2))\n\n\n(1 to 10).flatMap(n \u003d\u003e List(n, n * 2))",
-      "dateUpdated": "Jun 12, 2016 5:27:04 PM",
+      "text": "sc.version\n\n\n(1 to 10)\n\n// Multiply each by 3\n(1 to 10).map(_ * 3)\n\n// flatMap flattens the result\n(1 to 10).map(n \u003d\u003e List(n, n * 2))\n\n\n(1 to 10).flatMap(n \u003d\u003e List(n, n * 2))",
+      "dateUpdated": "Jun 23, 2016 10:46:53 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -23,33 +23,89 @@
       },
       "jobName": "paragraph_1465770412294_-1431953634",
       "id": "20160612-172652_365679851",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res0: String \u003d 1.6.1\nres1: scala.collection.immutable.Range.Inclusive \u003d Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)\nres2: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(3, 6, 9, 12, 15, 18, 21, 24, 27, 30)\nres3: scala.collection.immutable.IndexedSeq[List[Int]] \u003d Vector(List(1, 2), List(2, 4), List(3, 6), List(4, 8), List(5, 10), List(6, 12), List(7, 14), List(8, 16), List(9, 18), List(10, 20))\nres4: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(1, 2, 2, 4, 3, 6, 4, 8, 5, 10, 6, 12, 7, 14, 8, 16, 9, 18, 10, 20)\n"
+      },
       "dateCreated": "Jun 12, 2016 5:26:52 PM",
+      "dateStarted": "Jun 23, 2016 10:46:53 PM",
+      "dateFinished": "Jun 23, 2016 10:48:36 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n\n1 + 1",
+      "dateUpdated": "Jun 23, 2016 10:48:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1466700034548_1538622262",
+      "id": "20160623-114034_1262462399",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "[1] 2"
+      },
+      "dateCreated": "Jun 23, 2016 11:40:34 AM",
+      "dateStarted": "Jun 23, 2016 10:48:47 PM",
+      "dateFinished": "Jun 23, 2016 10:48:51 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r ",
+      "dateUpdated": "Jun 23, 2016 9:49:21 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1466736561297_1490881639",
+      "id": "20160623-214921_1637553812",
+      "dateCreated": "Jun 23, 2016 9:49:21 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
   ],
   "name": "Scala Notes",
   "id": "2BPEJKSP6",
+  "lastReplName": {
+    "value": "r"
+  },
   "angularObjects": {
-    "2BQCH17EH:shared_process": [],
-    "2BKYFDS7Q:shared_process": [],
-    "2BN27KE9W:shared_process": [],
-    "2BNR2S1SA:shared_process": [],
-    "2BQSD9PWH:shared_process": [],
-    "2BNX8S4PE:shared_process": [],
-    "2BKYN4BSP:shared_process": [],
-    "2BMGY8XB1:shared_process": [],
-    "2BMJAS6GB:shared_process": [],
-    "2BQ6M2APK:shared_process": [],
-    "2BP8PS6E4:shared_process": [],
-    "2BM8TNDU6:shared_process": [],
-    "2BN3F679N:shared_process": [],
-    "2BM19HA25:shared_process": [],
-    "2BPTH31JC:shared_process": [],
-    "2BPD56EQM:shared_process": [],
-    "2BNSFTY5W:shared_process": [],
-    "2BQ8KHB3A:shared_process": [],
-    "2BQXFYNMJ:shared_process": []
+    "2BN7JCHM6:shared_process": [],
+    "2BRP9DAPW:shared_process": [],
+    "2BP9XS4UT:shared_process": [],
+    "2BPWHDB6M:shared_process": [],
+    "2BR9YSU2N:shared_process": [],
+    "2BNUVHBNW:shared_process": [],
+    "2BR9Q5PX5:shared_process": [],
+    "2BPAVC7GU:shared_process": [],
+    "2BRHH2S6G:shared_process": [],
+    "2BRPTVWH4:shared_process": [],
+    "2BNE1DABD:shared_process": [],
+    "2BQMN8B9Y:shared_process": [],
+    "2BP4W8X9D:shared_process": [],
+    "2BP9MH176:shared_process": [],
+    "2BRHZ9VEH:shared_process": [],
+    "2BNSRHX2C:shared_process": [],
+    "2BR6Z8Y6Q:shared_process": []
   },
   "config": {},
   "info": {}
