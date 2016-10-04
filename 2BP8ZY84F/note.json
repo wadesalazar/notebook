@@ -3,7 +3,7 @@
     {
       "title": "Load deps (only required for versions less than 0.6)",
       "text": "%dep\nz.reset\nz.addRepo(\"hbase-spark\").url(\"https://repository.apache.org/content/repositories/snapshots/\")\nz.load(\"org.apache.hbase:hbase-spark:2.0.0-SNAPSHOT\")",
-      "dateUpdated": "Jun 26, 2016 6:16:39 PM",
+      "dateUpdated": "Jun 27, 2016 1:03:31 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -41,7 +41,7 @@
     {
       "title": "Grab a snapshot of the HBase table",
       "text": "//add the repo hbase-spark \"https://repository.apache.org/content/repositories/snapshots/\n//and the dep org.apache.hbase:hbase-spark:2.0.0-SNAPSHOT\n\nimport org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\n\n//create a Hbase conf file and set parameters for the scan\nval conf2 \u003d HBaseConfiguration.create()\nconf2.set(TableInputFormat.INPUT_TABLE, \"timeseries\")\nconf2.set(\"hbase.zookeeper.quorum\", \"rhea.saturn\");\nconf2.setInt(\"hbase.zookeeper.property.clientPort\", 2181);\n\n\n//adjust these values to match your query\n//remember these are seconds so if you used milliseconds do so here\nconf2.set(TableInputFormat.SCAN_ROW_START, \"Simulation Examples.Functions.Ramp1-14659441700\")\nconf2.set(TableInputFormat.SCAN_ROW_STOP, \"Simulation Examples.Functions.Ramp1-1465944400\")\n\n//create a RDD from the table scan\nval hBaseRDD2 \u003d sc.newAPIHadoopRDD(conf2, classOf[org.apache.hadoop.hbase.mapreduce.TableInputFormat],\nclassOf[org.apache.hadoop.hbase.io.ImmutableBytesWritable],\nclassOf[org.apache.hadoop.hbase.client.Result])\n\n//exract and print triple\nval i2 \u003d hBaseRDD2.map(row \u003d\u003e{\n    //retrieve the latest values from each cell    \n    ((String.valueOf(row._2.getValue(\"cf\".getBytes,\"id\".getBytes()).map(_.toChar))),\n    (String.valueOf(row._2.getValue(\"cf\".getBytes,\"v\".getBytes()).map(_.toChar))),\n    (String.valueOf(row._2.getValue(\"cf\".getBytes,\"t\".getBytes()).map(_.toChar))))\n\n})",
-      "dateUpdated": "Jun 26, 2016 6:46:17 PM",
+      "dateUpdated": "Jun 27, 2016 12:59:07 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -67,18 +67,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "import org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\nconf2: org.apache.hadoop.conf.Configuration \u003d Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, yarn-default.xml, yarn-site.xml, hdfs-default.xml, hdfs-site.xml, hbase-default.xml, hbase-site.xml\nhBaseRDD2: org.apache.spark.rdd.RDD[(org.apache.hadoop.hbase.io.ImmutableBytesWritable, org.apache.hadoop.hbase.client.Result)] \u003d NewHadoopRDD[24] at newAPIHadoopRDD at \u003cconsole\u003e:94\ni2: org.apache.spark.rdd.RDD[(String, String, String)] \u003d MapPartitionsRDD[25] at map at \u003cconsole\u003e:96\n"
+        "msg": "import org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\nconf2: org.apache.hadoop.conf.Configuration \u003d Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, yarn-default.xml, yarn-site.xml, hdfs-default.xml, hdfs-site.xml, hbase-default.xml, hbase-site.xml\nhBaseRDD2: org.apache.spark.rdd.RDD[(org.apache.hadoop.hbase.io.ImmutableBytesWritable, org.apache.hadoop.hbase.client.Result)] \u003d NewHadoopRDD[0] at newAPIHadoopRDD at \u003cconsole\u003e:38\ni2: org.apache.spark.rdd.RDD[(String, String, String)] \u003d MapPartitionsRDD[1] at map at \u003cconsole\u003e:40\n"
       },
       "dateCreated": "Jun 12, 2016 4:54:05 PM",
-      "dateStarted": "Jun 26, 2016 6:46:17 PM",
-      "dateFinished": "Jun 26, 2016 6:46:44 PM",
+      "dateStarted": "Jun 27, 2016 12:59:08 PM",
+      "dateFinished": "Jun 27, 2016 12:59:45 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Print a few tuples",
       "text": "i2.count\n//print each triple to the screen  \ni2.collect.take(1).foreach(ln \u003d\u003e {\n        println(ln._1 + \" \" + ln._2 + \" \" + ln._3)\n})",
-      "dateUpdated": "Jun 26, 2016 6:47:38 PM",
+      "dateUpdated": "Jun 27, 2016 1:00:22 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -103,18 +103,18 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "res70: Long \u003d 19\nSimulation Examples.Functions.Ramp1 95 1465944177501\n"
+        "msg": "res7: Long \u003d 19\nSimulation Examples.Functions.Ramp1 95 1465944177501\n"
       },
       "dateCreated": "Jun 12, 2016 4:54:44 PM",
-      "dateStarted": "Jun 26, 2016 6:47:38 PM",
-      "dateFinished": "Jun 26, 2016 6:47:44 PM",
+      "dateStarted": "Jun 27, 2016 1:00:23 PM",
+      "dateFinished": "Jun 27, 2016 1:01:12 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Cast to DF with the provided schema class and then register as temp table",
       "text": "// Provide a class to describe the schema of the RDD\ncase class Sample( id:String, v:String, t:String)\nval i3 \u003d i2.map(n \u003d\u003e \n    Sample(n._1,n._2,n._3)\n)\n\n// Convert RDD to a dataframe then to a table \ni3.toDF().registerTempTable(\"ts_data\")",
-      "dateUpdated": "Jun 26, 2016 6:48:52 PM",
+      "dateUpdated": "Jun 27, 2016 1:01:18 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -140,22 +140,22 @@
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
-        "msg": "defined class Sample\ni3: org.apache.spark.rdd.RDD[Sample] \u003d MapPartitionsRDD[26] at map at \u003cconsole\u003e:100\n"
+        "msg": "defined class Sample\ni3: org.apache.spark.rdd.RDD[Sample] \u003d MapPartitionsRDD[2] at map at \u003cconsole\u003e:44\n"
       },
       "dateCreated": "Jun 12, 2016 4:54:53 PM",
-      "dateStarted": "Jun 26, 2016 6:48:52 PM",
-      "dateFinished": "Jun 26, 2016 6:49:01 PM",
+      "dateStarted": "Jun 27, 2016 1:01:20 PM",
+      "dateFinished": "Jun 27, 2016 1:02:52 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Query Table",
       "text": "%sql\n\nselect * from ts_data\n\nORDER BY t, id",
-      "dateUpdated": "Jun 26, 2016 6:50:10 PM",
+      "dateUpdated": "Jun 30, 2016 3:39:14 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
-          "mode": "multiBarChart",
+          "mode": "lineChart",
           "height": 300.0,
           "optionOpen": false,
           "keys": [

@@ -1,0 +1,78 @@
+{
+  "paragraphs": [
+    {
+      "text": "%r\n\ndf \u003c- sql(sqlContext, \"select * from ts_data\")\nprintSchema(df)\nSparkR::head(df)\n",
+      "dateUpdated": "Jun 27, 2016 1:05:56 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1467049468573_1945823226",
+      "id": "20160627-124428_1709473320",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "root\n |– id: string (nullable \u003d true)\n |– v: string (nullable \u003d true)\n |– t: string (nullable \u003d true)\n                                   id  v             t\n1 Simulation Examples.Functions.Ramp1 95 1465944177501\n2 Simulation Examples.Functions.Ramp1 67 1465944221118\n3 Simulation Examples.Functions.Ramp1 51 1465944231258\n4 Simulation Examples.Functions.Ramp1 87 1465944240882\n5 Simulation Examples.Functions.Ramp1 75 1465944251038\n6 Simulation Examples.Functions.Ramp1 59 1465944261177"
+      },
+      "dateCreated": "Jun 27, 2016 12:44:28 PM",
+      "dateStarted": "Jun 27, 2016 1:05:57 PM",
+      "dateFinished": "Jun 27, 2016 1:06:39 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r ",
+      "dateUpdated": "Jun 27, 2016 12:47:28 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1467049648733_-1934725177",
+      "id": "20160627-124728_10715419",
+      "dateCreated": "Jun 27, 2016 12:47:28 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Time Series in R",
+  "id": "2BQ34D76R",
+  "lastReplName": {
+    "value": "r"
+  },
+  "angularObjects": {
+    "2BN7JCHM6:shared_process": [],
+    "2BRP9DAPW:shared_process": [],
+    "2BP9XS4UT:shared_process": [],
+    "2BPWHDB6M:shared_process": [],
+    "2BR9YSU2N:shared_process": [],
+    "2BNUVHBNW:shared_process": [],
+    "2BR9Q5PX5:shared_process": [],
+    "2BPAVC7GU:shared_process": [],
+    "2BRHH2S6G:shared_process": [],
+    "2BRPTVWH4:shared_process": [],
+    "2BNE1DABD:shared_process": [],
+    "2BQMN8B9Y:shared_process": [],
+    "2BP4W8X9D:shared_process": [],
+    "2BP9MH176:shared_process": [],
+    "2BRHZ9VEH:shared_process": [],
+    "2BNSRHX2C:shared_process": [],
+    "2BR6Z8Y6Q:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
