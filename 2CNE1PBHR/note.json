@@ -1,0 +1,207 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\n\nimport \n\n1 + 1",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 5:39:20 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500028593558_-1010727116",
+      "id": "20170714-053633_1052198833",
+      "dateCreated": "Jul 14, 2017 5:36:33 AM",
+      "dateStarted": "Jul 14, 2017 5:39:07 AM",
+      "dateFinished": "Jul 14, 2017 5:39:07 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nimport numpy as np\na \u003d np.arange(15).reshape(3, 5)\n\na\n\n\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 5:41:47 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "array([[ 0,  1,  2,  3,  4],\n       [ 5,  6,  7,  8,  9],\n       [10, 11, 12, 13, 14]])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500028604701_1083243319",
+      "id": "20170714-053644_1430347189",
+      "dateCreated": "Jul 14, 2017 5:36:44 AM",
+      "dateStarted": "Jul 14, 2017 5:41:47 AM",
+      "dateFinished": "Jul 14, 2017 5:41:47 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\na.shape\na.ndim\na.dtype.name",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 5:42:28 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u0027int64\u0027\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500028828610_-831897143",
+      "id": "20170714-054028_775455792",
+      "dateCreated": "Jul 14, 2017 5:40:28 AM",
+      "dateStarted": "Jul 14, 2017 5:42:28 AM",
+      "dateFinished": "Jul 14, 2017 5:42:28 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nfrom scipy.interpolate import interp1d\nimport matplotlib.pyplot as plt\n\nx \u003d np.linspace(0, 10, num\u003d11, endpoint\u003dTrue)\ny \u003d np.cos(-x**2/9.0)\n\nf \u003d interp1d(x, y)\nf2 \u003d interp1d(x, y, kind\u003d\u0027cubic\u0027)\n\nxnew \u003d np.linspace(0, 10, num\u003d41, endpoint\u003dTrue)\n\nplt.plot(x, y, \u0027o\u0027, xnew, f(xnew), \u0027-\u0027, xnew, f2(xnew), \u0027--\u0027)\nplt.legend([\u0027data\u0027, \u0027linear\u0027, \u0027cubic\u0027], loc\u003d\u0027best\u0027)\nplt.show()\n\n\nf2.fill_value\n\n\nf.y\n",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 6:19:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "array([ 1.        ,  0.99383351,  0.90284967,  0.54030231, -0.20550672,\n       -0.93454613, -0.65364362,  0.6683999 ,  0.67640492, -0.91113026,\n        0.11527995])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500028919552_1190444888",
+      "id": "20170714-054159_884331891",
+      "dateCreated": "Jul 14, 2017 5:41:59 AM",
+      "dateStarted": "Jul 14, 2017 6:19:45 AM",
+      "dateFinished": "Jul 14, 2017 6:19:45 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nxnew \u003d np.arange(0, 9, 0.1)\nynew \u003d f(xnew)\n\nynew\n ",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 6:19:25 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "array([ 1.        ,  0.99938335,  0.9987667 ,  0.99815005,  0.9975334 ,\n        0.99691675,  0.99630011,  0.99568346,  0.99506681,  0.99445016,\n        0.99383351,  0.98473512,  0.97563674,  0.96653836,  0.95743997,\n        0.94834159,  0.93924321,  0.93014482,  0.92104644,  0.91194805,\n        0.90284967,  0.86659493,  0.8303402 ,  0.79408546,  0.75783072,\n        0.72157599,  0.68532125,  0.64906651,  0.61281178,  0.57655704,\n        0.54030231,  0.4657214 ,  0.3911405 ,  0.3165596 ,  0.2419787 ,\n        0.16739779,  0.09281689,  0.01823599, -0.05634492, -0.13092582,\n       -0.20550672, -0.27841066, -0.3513146 , -0.42421854, -0.49712249,\n       -0.57002643, -0.64293037, -0.71583431, -0.78873825, -0.86164219,\n       -0.93454613, -0.90645588, -0.87836563, -0.85027538, -0.82218513,\n       -0.79409488, -0.76600463, -0.73791437, -0.70982412, -0.68173387,\n       -0.65364362, -0.52143927, -0.38923492, -0.25703056, -0.12482621,\n        0.00737814,  0.13958249,  0.27178685,  0.4039912 ,  0.53619555,\n        0.6683999 ,  0.66920041,  0.67000091,  0.67080141,  0.67160191,\n        0.67240241,  0.67320291,  0.67400342,  0.67480392,  0.67560442,\n        0.67640492,  0.5176514 ,  0.35889788,  0.20014437,  0.04139085,\n       -0.11736267, -0.27611619, -0.43486971, -0.59362323, -0.75237674])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500029003836_1860832358",
+      "id": "20170714-054323_306788450",
+      "dateCreated": "Jul 14, 2017 5:43:23 AM",
+      "dateStarted": "Jul 14, 2017 6:19:25 AM",
+      "dateFinished": "Jul 14, 2017 6:19:25 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 5:49:38 AM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500029378434_1795362104",
+      "id": "20170714-054938_420575832",
+      "dateCreated": "Jul 14, 2017 5:49:38 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "pySpark",
+  "id": "2CNE1PBHR",
+  "angularObjects": {
+    "2CMXHQSCJ:shared_process": [],
+    "2CNTV9PFZ:shared_process": [],
+    "2CQ46DPCP:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKYBMVHP:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

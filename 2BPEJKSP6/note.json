@@ -1,111 +1,252 @@
 {
   "paragraphs": [
     {
-      "text": "sc.version\n\n\n(1 to 10)\n\n// Multiply each by 3\n(1 to 10).map(_ * 3)\n\n// flatMap flattens the result\n(1 to 10).map(n \u003d\u003e List(n, n * 2))\n\n\n(1 to 10).flatMap(n \u003d\u003e List(n, n * 2))",
-      "dateUpdated": "Jun 23, 2016 10:46:53 PM",
+      "title": "Does Spark Run ?",
+      "text": "%spark2\n\nsc.version\n\n\n(1 to 10)\n\n// Multiply each by 3\n(1 to 10).map(_ * 3)\n\n// flatMap flattens the result\n(1 to 10).map(n \u003d\u003e List(n, n * 2))\n\n\n(1 to 10).flatMap(n \u003d\u003e List(n, n * 2))",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 12:20:06 AM",
       "config": {
         "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
         "enabled": true,
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "title": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "jobName": "paragraph_1465770412294_-1431953634",
-      "id": "20160612-172652_365679851",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres40: String \u003d 2.1.1.2.6.1.0-129\n\nres43: scala.collection.immutable.Range.Inclusive \u003d Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)\n\nres46: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(3, 6, 9, 12, 15, 18, 21, 24, 27, 30)\n\nres49: scala.collection.immutable.IndexedSeq[List[Int]] \u003d Vector(List(1, 2), List(2, 4), List(3, 6), List(4, 8), List(5, 10), List(6, 12), List(7, 14), List(8, 16), List(9, 18), List(10, 20))\n\nres52: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(1, 2, 2, 4, 3, 6, 4, 8, 5, 10, 6, 12, 7, 14, 8, 16, 9, 18, 10, 20)\n"
+          }
+        ]
+      },
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
         "msg": "res0: String \u003d 1.6.1\nres1: scala.collection.immutable.Range.Inclusive \u003d Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)\nres2: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(3, 6, 9, 12, 15, 18, 21, 24, 27, 30)\nres3: scala.collection.immutable.IndexedSeq[List[Int]] \u003d Vector(List(1, 2), List(2, 4), List(3, 6), List(4, 8), List(5, 10), List(6, 12), List(7, 14), List(8, 16), List(9, 18), List(10, 20))\nres4: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(1, 2, 2, 4, 3, 6, 4, 8, 5, 10, 6, 12, 7, 14, 8, 16, 9, 18, 10, 20)\n"
       },
+      "apps": [],
+      "jobName": "paragraph_1465770412294_-1431953634",
+      "id": "20160612-172652_365679851",
       "dateCreated": "Jun 12, 2016 5:26:52 PM",
-      "dateStarted": "Jun 23, 2016 10:46:53 PM",
-      "dateFinished": "Jun 23, 2016 10:48:36 PM",
+      "dateStarted": "Jul 22, 2017 12:20:06 AM",
+      "dateFinished": "Jul 22, 2017 12:20:09 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
+      "title": "Does R run ?",
       "text": "%r\n\n1 + 1",
-      "dateUpdated": "Jun 23, 2016 10:48:47 PM",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 12:20:12 AM",
       "config": {
         "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
         "enabled": true,
-        "editorMode": "ace/mode/r"
+        "editorMode": "ace/mode/r",
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false
+        },
+        "title": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "jobName": "paragraph_1466700034548_1538622262",
-      "id": "20160623-114034_1262462399",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n[1] 2\n\n\n\n"
+          }
+        ]
+      },
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
         "msg": "[1] 2"
       },
+      "apps": [],
+      "jobName": "paragraph_1466700034548_1538622262",
+      "id": "20160623-114034_1262462399",
       "dateCreated": "Jun 23, 2016 11:40:34 AM",
-      "dateStarted": "Jun 23, 2016 10:48:47 PM",
-      "dateFinished": "Jun 23, 2016 10:48:51 PM",
+      "dateStarted": "Jul 22, 2017 12:20:12 AM",
+      "dateFinished": "Jul 22, 2017 12:20:12 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%r ",
-      "dateUpdated": "Jun 23, 2016 9:49:21 PM",
+      "title": "Check HDFS Access",
+      "text": "%spark\n\nimport org.apache.hadoop.fs.{Path, FileSystem}\nimport java.net.URI\nimport java.io.File.separator\n\nvar status \u003d FileSystem.get(sc.hadoopConfiguration).listStatus(new Path(\"/user/zeppelin\"))\nvar base \u003d new URI(fs.getUri().toString + \"/user\");\nstatus.foreach(x \u003d\u003e\nprintln(\nbase.relativize(x.getPath.toUri).getPath + File.separator\n)\n)",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 12:20:17 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport org.apache.hadoop.fs.{Path, FileSystem}\n\nimport java.net.URI\n\nimport java.io.File.separator\nstatus: Array[org.apache.hadoop.fs.FileStatus] \u003d Array(FileStatus{path\u003dhdfs://amalthea.jupiter:8020/user/zeppelin/.Trash; isDirectory\u003dtrue; modification_time\u003d1499925600048; access_time\u003d0; owner\u003dzeppelin; group\u003dhdfs; permission\u003drwx------; isSymlink\u003dfalse}, FileStatus{path\u003dhdfs://amalthea.jupiter:8020/user/zeppelin/.sparkStaging; isDirectory\u003dtrue; modification_time\u003d1500699084579; access_time\u003d0; owner\u003dzeppelin; group\u003dhdfs; permission\u003drwxr-xr-x; isSymlink\u003dfalse}, FileStatus{path\u003dhdfs://amalthea.jupiter:8020/user/zeppelin/WTI.csv; isDirectory\u003dfalse; length\u003d133729; replication\u003d3; blocksize\u003d134217728; modification_time\u003d1499841346460; access_time\u003d1499841345563; owner\u003dzeppelin; group\u003dhdfs; permission\u003drw-r--r--; isSymlink\u003dfalse}, FileStatus{path\u003dhdfs://amalthea.jupiter:8020/user/zeppelin/input.js...\n\n\n\u003cconsole\u003e:40: error: not found: value fs\n       var base \u003d new URI(fs.getUri().toString + \"/user\");\n                          ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1466736561297_1490881639",
+      "id": "20160623-214921_1637553812",
+      "dateCreated": "Jun 23, 2016 9:49:21 PM",
+      "dateStarted": "Jul 22, 2017 12:20:17 AM",
+      "dateFinished": "Jul 22, 2017 12:20:18 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Check Hive Access",
+      "text": "%spark\nvar dbList \u003d spark.sql(\"show databases\").show\n\nvar dbList \u003d spark.sql(\"show tables\").show\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 12:20:24 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------+\n|databaseName|\n+------------+\n|     default|\n+------------+\n\n\ndbList: Unit \u003d ()\n+--------+---------+-----------+\n|database|tableName|isTemporary|\n+--------+---------+-----------+\n+--------+---------+-----------+\n\n\ndbList: Unit \u003d ()\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500023430392_-1181175739",
+      "id": "20170714-041030_923152876",
+      "dateCreated": "Jul 14, 2017 4:10:30 AM",
+      "dateStarted": "Jul 22, 2017 12:20:24 AM",
+      "dateFinished": "Jul 22, 2017 12:20:27 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Check local access",
+      "text": "%spark2\nimport sqlContext.implicits._\nimport java.io.File\nval files \u003d new File(\"//tmp\").listFiles.map(_.getName).toList\nfiles.foreach( filename \u003d\u003e\nprintln(filename)\n)\n",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 12:20:38 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport sqlContext.implicits._\n\nimport java.io.File\nfiles: List[String] \u003d List(yum.log, .X11-unix, .font-unix, .Test-unix, .ICE-unix, .XIM-unix, ks-script-LCWrI6, ambari.properties.1, ambari.properties.2, hadoop-unjar9037068756903623459, hsperfdata_root, ambari.properties.3, hsperfdata_nifi, .java_pid2472, ehcache-sizeof-agent8534895067679463681.jar, RtmpIBRbyR, ambari.properties.4, ambari.properties.7, .java_pid2192, ehcache-sizeof-agent1500911893572908988.jar, hbase-hbase, Jetty_localhost_44102_datanode____.5emcdi, RtmpJ8qXnw, hsperfdata_ambari-qa, zeppelin_sparkr-6276354964333261102.R, systemd-private-99330e8909534dd797cd9a2b557cd992-cups.service-weSBJD, ambari-qa, hadoop-hdfs, hsperfdata_zookeeper, hsperfdata_hdfs, Jetty_localhost_38285_datanode____nzkowh, zeppelin_sparkr-1355537442731457314.R, hsperfdata_yarn, hsperfdata_hbase, hdf-...yum.log\n.X11-unix\n.font-unix\n.Test-unix\n.ICE-unix\n.XIM-unix\nks-script-LCWrI6\nambari.properties.1\nambari.properties.2\nhadoop-unjar9037068756903623459\nhsperfdata_root\nambari.properties.3\nhsperfdata_nifi\n.java_pid2472\nehcache-sizeof-agent8534895067679463681.jar\nRtmpIBRbyR\nambari.properties.4\nambari.properties.7\n.java_pid2192\nehcache-sizeof-agent1500911893572908988.jar\nhbase-hbase\nJetty_localhost_44102_datanode____.5emcdi\nRtmpJ8qXnw\nhsperfdata_ambari-qa\nzeppelin_sparkr-6276354964333261102.R\nsystemd-private-99330e8909534dd797cd9a2b557cd992-cups.service-weSBJD\nambari-qa\nhadoop-hdfs\nhsperfdata_zookeeper\nhsperfdata_hdfs\nJetty_localhost_38285_datanode____nzkowh\nzeppelin_sparkr-1355537442731457314.R\nhsperfdata_yarn\nhsperfdata_hbase\nhdf-ambari-mpack-3.0.0.0-453.tar.gz\nJetty_0_0_0_0_16010_master____.6nvknp\nhsperfdata_mapred\nhive\nhsperfdata_hive\nRtmpLH9RLc\nhadoop-unjar1143837077219415546\nJetty_amalthea_jupiter_50090_secondary____z43kd3\nyum_save_tx.2017-07-12.07-34.dwb1Pm.yumtx\nRtmpgsQ41R\nRtmphR0eIy\nambari.properties.5\n.s.PGSQL.5432.lock\nspark2\nhsperfdata_spark\nhsperfdata_zeppelin\nliblz4-java6552495104287330601.so\nhsperfdata_ams\nzeppelin_sparkr-477987170503781585.R\nambari.properties.6\nhbase-ambari-qa\nhbase_chk_verify\nhadoop-unjar7921180748566711511\n39c79069-3bf3-4082-8a3f-50960ac8f3c3_resources\n.s.PGSQL.5432\nhadoop-unjar1713537970273378188\n29fbd27d-06c4-4516-890c-9201ecf83061_resources\nhsperfdata_hcat\nhadoop-unjar3304485348112457408\nhsperfdata_wades\nhcat\nzeppelin_pyspark-7989123562237439832.py\nspark-7208c35b-c4b5-4921-928f-5f8046d81cb6\nblockmgr-77f06454-1903-4b6b-9134-aa97ff3f9c0f\nspark-a71b8fa4-ab14-498e-890d-d4f7a11098f4\nzeppelin\n274c3f4f-8b43-43fb-9816-04e4614ed6b9_resources\nliblz4-java2016487549709578789.so\nRtmpDCYkAh\nhadoop-unjar3721142572748069936\nzeppelin_sparkr-5176417975715059205.R\nyum_save_tx.2017-07-12.04-21.F2oXZv.yumtx\nJetty_localhost_44203_datanode____eo92u4\nJetty_amalthea_jupiter_50070_hdfs____7pnsb0\nhadoop-unjar4318335476498954091\na8d19343-b693-4e47-8617-9fc17b8a73bb_resources\nRtmpkXqlde\nhadoop-unjar7722496110098379411\n88cda4e0-71b0-4240-8cb8-2e5e5a44b75d_resources\nzeppelin_pyspark-5222175657739418522.py\nzeppelin_pyspark-2254853923652704526.py\nspark-9b28b83e-c98f-4209-9217-abbe8fdf27a0\nspark-86f82cbb-710a-42fe-8e9a-aa153b543503\n3bc9df61-4f06-417f-bd30-ebab88005ee7_resources\nzeppelin_pyspark-765781239886110991.py\n.java_pid2498\njna-3381182\n5929e4ea-619d-4250-b425-f972b1e279f3_resources\nambari.properties.8\n3e47d645-e25a-417a-8748-7e4313160092_resources\nblockmgr-a01daf56-a1c1-41d2-8a1c-b1b8facb8087\nJetty_localhost_42928_datanode____n1fi3s\n3f36bc8f-d629-472f-b3bc-bdc03171c650_resources\n1a4ad77b-7c64-46fe-a3a6-a649a980cf7c_resources\n1976db75-d0ac-4e09-af2f-d5cdaf138ebf_resources\nzeppelin_pyspark-946825195946478452.py\nzeppelin_sparkr-1730677425319930926.R\n6f50da29-e255-4acb-b44a-5c2ae79d854c_resources\nspark-8eb20f00-e9c7-4429-9da5-4c5cf3085880\n87edd1d4-9dff-4d73-ac52-a65bac24e196_resources\nhadoop-unjar4751755245327931184\nzeppelin_pyspark-5557589735015156840.py\nliblz4-java1749969107216044839.so\n89ee9849-22b1-4fe1-8ad8-ed9e6c3c191a_resources\nsystemd-private-3f85b7a5f9414248acdb8727479cbd3a-cups.service-NB5RFB\nehcache-sizeof-agent1595168637565703036.jar\nJetty_localhost_32850_datanode____.ajd5ol\nhadoop-unjar8182944392887683675\nhadoop-unjar5472608361358826918\nhadoop-unjar8997088073616159874\na9ffb4c7-6022-4443-8532-ee67a796ac2d_resources\nzeppelin_pyspark-4100409824873204173.py\nspark-bcf0b5fa-a770-4cc0-b0ec-a90cddb66c6c\nblockmgr-c66d7b0d-5a0f-4c8c-98d7-435970152716\nspark-9e95942a-0bd9-47fc-9024-5a4522d81b23\n73ffa662-ea36-4e88-9557-7475e31adc55_resources\nliblz4-java7048387013120460385.so\nzeppelin_sparkr-5231118122779194624.R\nsystemd-private-f0281f2266304aa99f2c691c0be5afad-cups.service-2IJqTk\nambari.properties.9\n.java_pid2474\nehcache-sizeof-agent2683355055615521388.jar\nJetty_localhost_43100_datanode____cqpgqh\nhadoop-unjar4347071223399269560\nhadoop-unjar5749390739355121763\nhadoop-unjar2446067056565168381\n7ab2a4f6-bffa-4a5d-b238-026a929525d8_resources\nzeppelin_pyspark-3565308879699725660.py\nceea1dc8-8f16-4a00-b656-286a06db49b7_resources\nzeppelin_pyspark-1749796510377763391.py\nzeppelin_pyspark-8419380150976962380.py\nspark-b82c46d4-08ae-40e8-b2a2-21a4dd7127dd\nb52d537a-8697-4576-955f-14df63955f51_resources\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500023559319_1254885731",
+      "id": "20170714-041239_813923438",
+      "dateCreated": "Jul 14, 2017 4:12:39 AM",
+      "dateStarted": "Jul 22, 2017 12:20:38 AM",
+      "dateFinished": "Jul 22, 2017 12:20:40 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark2\n",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 4:15:23 AM",
       "config": {},
       "settings": {
         "params": {},
         "forms": {}
       },
-      "jobName": "paragraph_1466736561297_1490881639",
-      "id": "20160623-214921_1637553812",
-      "dateCreated": "Jun 23, 2016 9:49:21 PM",
+      "apps": [],
+      "jobName": "paragraph_1500023723676_943239645",
+      "id": "20170714-041523_1267671600",
+      "dateCreated": "Jul 14, 2017 4:15:23 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "Scala Notes",
+  "name": "Pre Flight",
   "id": "2BPEJKSP6",
-  "lastReplName": {
-    "value": "r"
-  },
   "angularObjects": {
-    "2BN7JCHM6:shared_process": [],
-    "2BRP9DAPW:shared_process": [],
-    "2BP9XS4UT:shared_process": [],
-    "2BPWHDB6M:shared_process": [],
-    "2BR9YSU2N:shared_process": [],
-    "2BNUVHBNW:shared_process": [],
-    "2BR9Q5PX5:shared_process": [],
-    "2BPAVC7GU:shared_process": [],
-    "2BRHH2S6G:shared_process": [],
-    "2BRPTVWH4:shared_process": [],
-    "2BNE1DABD:shared_process": [],
-    "2BQMN8B9Y:shared_process": [],
-    "2BP4W8X9D:shared_process": [],
-    "2BP9MH176:shared_process": [],
-    "2BRHZ9VEH:shared_process": [],
-    "2BNSRHX2C:shared_process": [],
-    "2BR6Z8Y6Q:shared_process": []
+    "2CMXHQSCJ:shared_process": [],
+    "2CNTV9PFZ:shared_process": [],
+    "2CQ46DPCP:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKYBMVHP:shared_process": []
   },
   "config": {},
   "info": {}

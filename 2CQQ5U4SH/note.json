@@ -1,0 +1,431 @@
+{
+  "paragraphs": [
+    {
+      "text": "sc.version",
+      "user": "user1",
+      "dateUpdated": "Aug 1, 2017 7:43:23 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres1: String \u003d 2.1.1.2.6.1.0-129\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500698644041_-389523501",
+      "id": "20170721-234404_1384084254",
+      "dateCreated": "Jul 21, 2017 11:44:04 PM",
+      "dateStarted": "Jul 31, 2017 11:39:05 PM",
+      "dateFinished": "Jul 31, 2017 11:39:05 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var data \u003d spark.read.json(\"input.json\")",
+      "user": "user1",
+      "dateUpdated": "Jul 31, 2017 11:39:21 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\ndata: org.apache.spark.sql.DataFrame \u003d [UID: bigint, well: struct\u003cUID: bigint, wellbore: struct\u003cUID: bigint, Value: bigint\u003e\u003e]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500700083577_510104794",
+      "id": "20170722-000803_837945792",
+      "dateCreated": "Jul 22, 2017 12:08:03 AM",
+      "dateStarted": "Jul 31, 2017 11:39:21 PM",
+      "dateFinished": "Jul 31, 2017 11:39:28 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\nimport org.apache.spark.sql.types.StructField\nimport org.apache.spark.sql.types.StructType\n\ndata.printSchema\n\nval j \u003d data.schema\n\nj.length\n\nflatten(j)\n\nvar k \u003d data.schema.fields.map { f  \u003d\u003e \n    f.name\n}\n",
+      "user": "user1",
+      "dateUpdated": "Jul 31, 2017 11:39:34 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport org.apache.spark.sql.types.StructField\n\nimport org.apache.spark.sql.types.StructType\nroot\n |-- UID: long (nullable \u003d true)\n |-- well: struct (nullable \u003d true)\n |    |-- UID: long (nullable \u003d true)\n |    |-- wellbore: struct (nullable \u003d true)\n |    |    |-- UID: long (nullable \u003d true)\n |    |    |-- Value: long (nullable \u003d true)\n\n\nj: org.apache.spark.sql.types.StructType \u003d StructType(StructField(UID,LongType,true), StructField(well,StructType(StructField(UID,LongType,true), StructField(wellbore,StructType(StructField(UID,LongType,true), StructField(Value,LongType,true)),true)),true))\n\nres6: Int \u003d 2\n\n\n\n\u003cconsole\u003e:33: error: not found: value flatten\n       flatten(j)\n       ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500699963423_375626569",
+      "id": "20170722-000603_538557577",
+      "dateCreated": "Jul 22, 2017 12:06:03 AM",
+      "dateStarted": "Jul 31, 2017 11:39:34 PM",
+      "dateFinished": "Jul 31, 2017 11:39:36 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "def flatten(schema: StructType): Array[String] \u003d schema.fields.flatMap { f \u003d\u003e\n  f.dataType match {\n    case struct: StructType \u003d\u003e flatten(struct)\n    case _ \u003d\u003e Array(f.name)\n  }\n}\n",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 5:30:40 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nflatten: (schema: org.apache.spark.sql.types.StructType)Array[String]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500698592230_2051495376",
+      "id": "20170721-234312_1685465911",
+      "dateCreated": "Jul 21, 2017 11:43:12 PM",
+      "dateStarted": "Jul 22, 2017 4:38:17 AM",
+      "dateFinished": "Jul 22, 2017 4:38:18 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nimport org.apache.spark.sql.types.IntegerType\nimport org.apache.spark.sql.types.StringType\nimport org.apache.spark.sql.types.StructType\n\n\nval schema \u003d StructType(Seq(StructField(\"events\", \n  StructType(Seq(\n    StructField(\"beaconVersion\", IntegerType, true),\n    StructField(\"client\", StringType, true),\n    StructField(\"data\", StructType(Seq(\n      StructField(\"ad\", StructType(Seq(\n        StructField(\"adId\", StringType, true)\n      )))\n    )))\n  )))\n))\n\n\n\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 5:14:51 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport org.apache.spark.sql.types.IntegerType\n\nimport org.apache.spark.sql.types.StringType\n\nimport org.apache.spark.sql.types.StructType\n\nschema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(events,StructType(StructField(beaconVersion,IntegerType,true), StructField(client,StringType,true), StructField(data,StructType(StructField(ad,StructType(StructField(adId,StringType,true)),true)),true)),true))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500699668375_-1807046839",
+      "id": "20170722-000108_1827144206",
+      "dateCreated": "Jul 22, 2017 12:01:08 AM",
+      "dateStarted": "Jul 22, 2017 3:08:31 AM",
+      "dateFinished": "Jul 22, 2017 3:08:32 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\nimport org.apache.spark.sql.types.StructField\n\ndef getTopLevelColNames(input: DataFrame): Array[String] \u003d input.schema.fields.map { f \u003d\u003e\n    f.name\n}",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 7:46:43 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport org.apache.spark.sql.types.StructField\n\ngetTopLevelColNames: (input: org.apache.spark.sql.DataFrame)Array[String]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500726808077_-801782504",
+      "id": "20170722-073328_227007535",
+      "dateCreated": "Jul 22, 2017 7:33:28 AM",
+      "dateStarted": "Jul 22, 2017 7:46:43 AM",
+      "dateFinished": "Jul 22, 2017 7:46:43 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\ngetTopLevelColNames(data)\n",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 7:47:06 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres121: Array[String] \u003d Array(UID, well)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500727612496_-1161945225",
+      "id": "20170722-074652_1088370562",
+      "dateCreated": "Jul 22, 2017 7:46:52 AM",
+      "dateStarted": "Jul 22, 2017 7:47:06 AM",
+      "dateFinished": "Jul 22, 2017 7:47:06 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\nimport org.apache.spark.sql.DataFrame\n\ndef flatdf(output: DataFrame): DataFrame \u003d output.schema.fields.map { f \u003d\u003e\n    \n    \n}\n\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 8:03:34 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport org.apache.spark.sql.DataFrame\n\n\n\n\n\n\n\u003cconsole\u003e:71: error: type mismatch;\n found   : org.apache.spark.sql.DataFrame\n    (which expands to)  org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\n required: org.apache.spark.sql.types.StructField \u003d\u003e ?\n           output\n           ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500711664610_-941928064",
+      "id": "20170722-032104_1783193024",
+      "dateCreated": "Jul 22, 2017 3:21:04 AM",
+      "dateStarted": "Jul 22, 2017 7:32:00 AM",
+      "dateFinished": "Jul 22, 2017 7:32:00 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\nflatten(data.schema)\n\ndata.schema.fields.map{ f \u003d\u003e\n    data.select(f.name)\n    \n}\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 5:35:53 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres90: Array[String] \u003d Array(UID, UID, UID, Value)\n\nres92: Array[org.apache.spark.sql.DataFrame] \u003d Array([UID: bigint], [well: struct\u003cUID: bigint, wellbore: struct\u003cUID: bigint, Value: bigint\u003e\u003e])\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500711004996_2126505187",
+      "id": "20170722-031004_1195629629",
+      "dateCreated": "Jul 22, 2017 3:10:04 AM",
+      "dateStarted": "Jul 22, 2017 5:35:53 AM",
+      "dateFinished": "Jul 22, 2017 5:35:53 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\nvar clms \u003d Array(col(\"UID\"), col(\"well\"))\n\ndata.select(clms:_*)\n",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 5:06:46 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nclms: Array[org.apache.spark.sql.Column] \u003d Array(UID, well)\n\nres66: org.apache.spark.sql.DataFrame \u003d [UID: bigint, well: struct\u003cUID: bigint, wellbore: struct\u003cUID: bigint, Value: bigint\u003e\u003e]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500711673861_-936126182",
+      "id": "20170722-032113_1864075456",
+      "dateCreated": "Jul 22, 2017 3:21:13 AM",
+      "dateStarted": "Jul 22, 2017 5:06:46 AM",
+      "dateFinished": "Jul 22, 2017 5:06:47 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n\n1 + 1",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 2:47:13 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r"
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n[1] 2\n\n\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500698617684_760308715",
+      "id": "20170721-234337_1955470040",
+      "dateCreated": "Jul 21, 2017 11:43:37 PM",
+      "dateStarted": "Jul 22, 2017 2:47:13 AM",
+      "dateFinished": "Jul 22, 2017 2:47:15 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "user1",
+      "dateUpdated": "Jul 22, 2017 2:47:09 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500698770567_316475406",
+      "id": "20170721-234610_1712534206",
+      "dateCreated": "Jul 21, 2017 11:46:10 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Untitled Note 2",
+  "id": "2CQQ5U4SH",
+  "angularObjects": {
+    "2CMXHQSCJ:shared_process": [],
+    "2CNTV9PFZ:shared_process": [],
+    "2CQ46DPCP:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKYBMVHP:shared_process": []
+  },
+  "config": {
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}

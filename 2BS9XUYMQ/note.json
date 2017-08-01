@@ -2,35 +2,54 @@
   "paragraphs": [
     {
       "text": "%spark \n\nval conf \u003d sc.getConf\nconf.toDebugString\n",
-      "dateUpdated": "Oct 4, 2016 4:08:07 PM",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 4:31:59 AM",
       "config": {
         "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
         "enabled": true,
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/text",
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "jobName": "paragraph_1467050946098_-254965380",
-      "id": "20160627-130906_792557368",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nconf: org.apache.spark.SparkConf \u003d org.apache.spark.SparkConf@45f53a38\n\n\n\n\n\n\n\n\nres18: String \u003d\nhive.metastore.warehouse.dir\u003dfile:/home/zeppelin/spark-warehouse\nmaster\u003dyarn\nspark.app.id\u003dapplication_1499992683022_0003\nspark.app.name\u003dZeppelin\nspark.driver.appUIAddress\u003dhttp://192.168.189.12:4040\nspark.driver.extraClassPath\u003d/etc/zeppelin/conf/external-dependency-conf:/usr/hdp/current/zeppelin-server/interpreter/spark/*:/usr/hdp/current/zeppelin-server/lib/interpreter/*::/usr/hdp/current/zeppelin-server/interpreter/spark/zeppelin-spark_2.10-0.7.0.2.6.1.0-129.jar\nspark.driver.extraJavaOptions\u003d -Dfile.encoding\u003dUTF-8 -Dlog4j.configuration\u003dfile:///usr/hdp/current/zeppelin-server/conf/log4j.properties -Dzeppelin.log.file\u003d/var/log/zeppelin/zeppelin-interpreter-spark2-spark-zeppelin-amalthea.jupiter.log\nspark.driver.extraLibraryPath\u003d/usr/hdp/current/hadoop-client/lib/native:/u..."
+          }
+        ]
+      },
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
         "msg": "conf: org.apache.spark.SparkConf \u003d org.apache.spark.SparkConf@448543a7\nres2: String \u003d \nargs\u003d\nmaster\u003dyarn-client\nspark.app.id\u003dapplication_1473320228338_0001\nspark.app.name\u003dZeppelin\nspark.driver.appUIAddress\u003dhttp://192.168.189.162:4040\nspark.driver.extraClassPath\u003d::/home/hdfs/zeppelin/local-repo/2BRP9DAPW/*:/home/hdfs/zeppelin/interpreter/spark/*:/home/hdfs/zeppelin/zeppelin-interpreter/target/lib/*::/home/hdfs/zeppelin/conf:/home/hdfs/zeppelin/conf:/home/hdfs/zeppelin/zeppelin-interpreter/target/classes/home/hdfs/zeppelin/interpreter/spark/zeppelin-spark-0.6.0-SNAPSHOT.jar\nspark.driver.extraJavaOptions\u003d-Dhdp.version\u003d2.4.2.0-258\nspark.driver.host\u003d192.168.189.162\nspark.driver.port\u003d54161\nspark.eventLog.dir\u003dhdfs:///spark-history\nspark.eventLog.enabled\u003dtrue\nspark.executor.id\u003ddriver\nspark.executorEnv.PYTHONPATH\u003d/usr/hdp/current/spark-client/python/lib/py4j-0.9-sr..."
       },
+      "apps": [],
+      "jobName": "paragraph_1467050946098_-254965380",
+      "id": "20160627-130906_792557368",
       "dateCreated": "Jun 27, 2016 1:09:06 PM",
-      "dateStarted": "Oct 4, 2016 4:08:07 PM",
-      "dateFinished": "Oct 4, 2016 4:08:09 PM",
+      "dateStarted": "Jul 14, 2017 4:31:59 AM",
+      "dateFinished": "Jul 14, 2017 4:32:00 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -42,6 +61,7 @@
         "params": {},
         "forms": {}
       },
+      "apps": [],
       "jobName": "paragraph_1467051019135_-313707723",
       "id": "20160627-131019_814068653",
       "dateCreated": "Jun 27, 2016 1:10:19 PM",
@@ -51,27 +71,12 @@
   ],
   "name": "Scratch Pad",
   "id": "2BS9XUYMQ",
-  "lastReplName": {
-    "value": "spark"
-  },
   "angularObjects": {
-    "2BN7JCHM6:shared_process": [],
-    "2BRP9DAPW:shared_process": [],
-    "2BP9XS4UT:shared_process": [],
-    "2BPWHDB6M:shared_process": [],
-    "2BR9YSU2N:shared_process": [],
-    "2BNUVHBNW:shared_process": [],
-    "2BR9Q5PX5:shared_process": [],
-    "2BPAVC7GU:shared_process": [],
-    "2BRHH2S6G:shared_process": [],
-    "2BRPTVWH4:shared_process": [],
-    "2BNE1DABD:shared_process": [],
-    "2BQMN8B9Y:shared_process": [],
-    "2BP4W8X9D:shared_process": [],
-    "2BP9MH176:shared_process": [],
-    "2BRHZ9VEH:shared_process": [],
-    "2BNSRHX2C:shared_process": [],
-    "2BR6Z8Y6Q:shared_process": []
+    "2CMXHQSCJ:shared_process": [],
+    "2CNTV9PFZ:shared_process": [],
+    "2CQ46DPCP:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKYBMVHP:shared_process": []
   },
   "config": {},
   "info": {}

@@ -5,29 +5,43 @@
       "dateUpdated": "Jun 30, 2016 4:05:55 PM",
       "config": {
         "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
         "enabled": true,
-        "editorMode": "ace/mode/sh"
+        "editorMode": "ace/mode/sh",
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ]
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "jobName": "paragraph_1467319920962_-1336617771",
-      "id": "20160630-155200_2114001232",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Thu Jun 30 16:05:55 CDT 2016\n"
+          }
+        ]
+      },
       "result": {
         "code": "SUCCESS",
         "type": "TEXT",
         "msg": "Thu Jun 30 16:05:55 CDT 2016\n"
       },
+      "apps": [],
+      "jobName": "paragraph_1467319920962_-1336617771",
+      "id": "20160630-155200_2114001232",
       "dateCreated": "Jun 30, 2016 3:52:00 PM",
       "dateStarted": "Jun 30, 2016 4:05:55 PM",
       "dateFinished": "Jun 30, 2016 4:05:56 PM",
@@ -35,43 +49,66 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%sh ",
-      "dateUpdated": "Jun 30, 2016 3:52:12 PM",
+      "text": "%spark\n\nsc.version\n",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 7:25:08 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres19: String \u003d 2.1.1.2.6.1.0-129\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1467319932222_214320369",
+      "id": "20160630-155212_327228712",
+      "dateCreated": "Jun 30, 2016 3:52:12 PM",
+      "dateStarted": "Jul 14, 2017 7:25:08 AM",
+      "dateFinished": "Jul 14, 2017 7:25:09 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 7:25:08 AM",
       "config": {},
       "settings": {
         "params": {},
         "forms": {}
       },
-      "jobName": "paragraph_1467319932222_214320369",
-      "id": "20160630-155212_327228712",
-      "dateCreated": "Jun 30, 2016 3:52:12 PM",
+      "apps": [],
+      "jobName": "paragraph_1500035108750_1459951061",
+      "id": "20170714-072508_32251424",
+      "dateCreated": "Jul 14, 2017 7:25:08 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
   ],
   "name": "Untitled Note 1",
   "id": "2BPDKTKGS",
-  "lastReplName": {
-    "value": "sh"
-  },
   "angularObjects": {
-    "2BN7JCHM6:shared_process": [],
-    "2BRP9DAPW:shared_process": [],
-    "2BP9XS4UT:shared_process": [],
-    "2BPWHDB6M:shared_process": [],
-    "2BR9YSU2N:shared_process": [],
-    "2BNUVHBNW:shared_process": [],
-    "2BR9Q5PX5:shared_process": [],
-    "2BPAVC7GU:shared_process": [],
-    "2BRHH2S6G:shared_process": [],
-    "2BRPTVWH4:shared_process": [],
-    "2BNE1DABD:shared_process": [],
-    "2BQMN8B9Y:shared_process": [],
-    "2BP4W8X9D:shared_process": [],
-    "2BP9MH176:shared_process": [],
-    "2BRHZ9VEH:shared_process": [],
-    "2BNSRHX2C:shared_process": [],
-    "2BR6Z8Y6Q:shared_process": []
+    "2CMXHQSCJ:shared_process": [],
+    "2CNTV9PFZ:shared_process": [],
+    "2CQ46DPCP:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKYBMVHP:shared_process": []
   },
   "config": {},
   "info": {}

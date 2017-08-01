@@ -2,33 +2,49 @@
   "paragraphs": [
     {
       "text": "%md\n\nThis is a collection of notebooks to deploy with HWX SE demos\n",
-      "dateUpdated": "Jun 12, 2016 7:10:14 PM",
+      "dateUpdated": "Jul 14, 2017 5:33:39 AM",
       "config": {
         "colWidth": 12.0,
-        "graph": {
-          "mode": "table",
-          "height": 300.0,
-          "optionOpen": false,
-          "keys": [],
-          "values": [],
-          "groups": [],
-          "scatter": {}
-        },
         "enabled": true,
         "editorMode": "ace/mode/markdown",
-        "editorHide": true
+        "editorHide": false,
+        "results": [
+          {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "keys": [],
+              "values": [],
+              "groups": [],
+              "scatter": {}
+            }
+          }
+        ],
+        "editorSetting": {},
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "jobName": "paragraph_1465776446748_-1377403315",
-      "id": "20160612-190726_957307491",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003eThis is a collection of notebooks to deploy with HWX SE demos\u003c/p\u003e\n"
+          }
+        ]
+      },
       "result": {
         "code": "SUCCESS",
         "type": "HTML",
         "msg": "\u003cp\u003eThis is a collection of notebooks to deploy with HWX SE demos\u003c/p\u003e\n"
       },
+      "apps": [],
+      "jobName": "paragraph_1465776446748_-1377403315",
+      "id": "20160612-190726_957307491",
       "dateCreated": "Jun 12, 2016 7:07:26 PM",
       "dateStarted": "Jun 12, 2016 7:10:09 PM",
       "dateFinished": "Jun 12, 2016 7:10:09 PM",
@@ -36,7 +52,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "dateUpdated": "Jun 12, 2016 7:10:14 PM",
+      "text": "%sh\ndate\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 5:33:58 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -49,43 +67,61 @@
           "scatter": {}
         },
         "enabled": true,
-        "editorMode": "ace/mode/scala",
-        "editorHide": true
+        "editorMode": "ace/mode/sh",
+        "editorHide": false,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        }
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fri Jul 14 05:33:59 CDT 2017\n"
+          }
+        ]
+      },
+      "apps": [],
       "jobName": "paragraph_1465776479333_1946319839",
       "id": "20160612-190759_1485457114",
       "dateCreated": "Jun 12, 2016 7:07:59 PM",
-      "dateStarted": "Jun 12, 2016 7:10:09 PM",
-      "status": "RUNNING",
+      "dateStarted": "Jul 14, 2017 5:33:58 AM",
+      "dateFinished": "Jul 14, 2017 5:33:59 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 5:33:58 AM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500028438635_1953916401",
+      "id": "20170714-053358_960562179",
+      "dateCreated": "Jul 14, 2017 5:33:58 AM",
+      "status": "READY",
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "First Git Notebook",
+  "name": "Forward",
   "id": "2BMA47NWC",
   "angularObjects": {
-    "2BQCH17EH:shared_process": [],
-    "2BKYFDS7Q:shared_process": [],
-    "2BN27KE9W:shared_process": [],
-    "2BNR2S1SA:shared_process": [],
-    "2BQSD9PWH:shared_process": [],
-    "2BNX8S4PE:shared_process": [],
-    "2BKYN4BSP:shared_process": [],
-    "2BMJAS6GB:shared_process": [],
-    "2BMGY8XB1:shared_process": [],
-    "2BQ6M2APK:shared_process": [],
-    "2BP8PS6E4:shared_process": [],
-    "2BM8TNDU6:shared_process": [],
-    "2BN3F679N:shared_process": [],
-    "2BM19HA25:shared_process": [],
-    "2BPTH31JC:shared_process": [],
-    "2BNSFTY5W:shared_process": [],
-    "2BPD56EQM:shared_process": [],
-    "2BQ8KHB3A:shared_process": [],
-    "2BQXFYNMJ:shared_process": []
+    "2CMXHQSCJ:shared_process": [],
+    "2CNTV9PFZ:shared_process": [],
+    "2CQ46DPCP:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKYBMVHP:shared_process": []
   },
   "config": {},
   "info": {}

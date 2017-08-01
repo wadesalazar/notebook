@@ -1,0 +1,289 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark2\n\nsc.version\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 21, 2017 11:17:52 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nres0: String \u003d 2.1.1.2.6.1.0-129\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500035769878_278317146",
+      "id": "20170714-073609_1663198651",
+      "dateCreated": "Jul 14, 2017 7:36:09 AM",
+      "dateStarted": "Jul 21, 2017 11:17:52 PM",
+      "dateFinished": "Jul 21, 2017 11:18:25 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\n\nhdfs dfs -cat input.json\n\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 14, 2017 7:37:03 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{\"UID\":3463,\"well\":{\"UID\":3463,\"wellbore\":{\"UID\":1242,\"Value\":1}}}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500035784265_-543121756",
+      "id": "20170714-073624_602919292",
+      "dateCreated": "Jul 14, 2017 7:36:24 AM",
+      "dateStarted": "Jul 14, 2017 7:37:03 AM",
+      "dateFinished": "Jul 14, 2017 7:37:06 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark2\nvar data \u003d spark.read.json(\"input.json\")\n",
+      "user": "user1",
+      "dateUpdated": "Jul 21, 2017 11:31:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\ndata: org.apache.spark.sql.DataFrame \u003d [UID: bigint, well: struct\u003cUID: bigint, wellbore: struct\u003cUID: bigint, Value: bigint\u003e\u003e]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500035823449_-915681285",
+      "id": "20170714-073703_1482436343",
+      "dateCreated": "Jul 14, 2017 7:37:03 AM",
+      "dateStarted": "Jul 21, 2017 11:31:33 PM",
+      "dateFinished": "Jul 21, 2017 11:31:35 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark2\nvar cols \u003d data.columns\ndata.printSchema\n\n\n\n\n\n// for loop execution with a range\nfor( x \u003c- cols){\n    println( \"Value of a: \" + x.getClass)\n}\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 21, 2017 11:36:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\ncols: Array[String] \u003d Array(UID, well)\nroot\n |-- UID: long (nullable \u003d true)\n |-- well: struct (nullable \u003d true)\n |    |-- UID: long (nullable \u003d true)\n |    |-- wellbore: struct (nullable \u003d true)\n |    |    |-- UID: long (nullable \u003d true)\n |    |    |-- Value: long (nullable \u003d true)\n\nValue of a: class java.lang.String\nValue of a: class java.lang.String\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500035838129_1927643735",
+      "id": "20170714-073718_219289780",
+      "dateCreated": "Jul 14, 2017 7:37:18 AM",
+      "dateStarted": "Jul 21, 2017 11:36:26 PM",
+      "dateFinished": "Jul 21, 2017 11:36:27 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark2\nimport org.apache.spark.sql.functions.explode\nval jsonRDD \u003d sc.wholeTextFiles(\"input.json\")\nval jsonDF \u003d sqlContext.read.json(jsonRDD.values)\njsonDF.createOrReplaceTempView(\"dataAsTable\")\n\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 21, 2017 11:25:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport org.apache.spark.sql.functions.explode\n\njsonRDD: org.apache.spark.rdd.RDD[(String, String)] \u003d input.json MapPartitionsRDD[4] at wholeTextFiles at \u003cconsole\u003e:28\n\njsonDF: org.apache.spark.sql.DataFrame \u003d [UID: bigint, well: struct\u003cUID: bigint, wellbore: struct\u003cUID: bigint, Value: bigint\u003e\u003e]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500035855995_-748269541",
+      "id": "20170714-073735_1308116445",
+      "dateCreated": "Jul 14, 2017 7:37:35 AM",
+      "dateStarted": "Jul 21, 2017 8:20:11 PM",
+      "dateFinished": "Jul 21, 2017 8:20:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\ninput \u003c- read.json(\"/user/zeppelin/input.json\")\nfields \u003c- columns(input)\nshow(fields)\nfor( i in fields ){\nitem \u003c- select(input, i)\nshow(typeof(i))\n\n\n}\n\nschema(input)\n\ntypeof(input)\n\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 21, 2017 11:22:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r"
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n[1] “UID”  “well”\n[1] “character”\n[1] “character”\nStructType\n|-name \u003d “UID”, type \u003d “LongType”, nullable \u003d TRUE\n|-name \u003d “well”, type \u003d “StructType(StructField(UID,LongType,true), StructField(wellbore,StructType(StructField(UID,LongType,true), StructField(Value,LongType,true)),true))”, nullable \u003d TRUE\n[1] “S4”\n\n\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500035910777_1256949782",
+      "id": "20170714-073830_859087111",
+      "dateCreated": "Jul 14, 2017 7:38:30 AM",
+      "dateStarted": "Jul 21, 2017 11:22:09 PM",
+      "dateFinished": "Jul 21, 2017 11:22:10 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\nvar st \u003d data.schema.fields\n\nst.map(x -\u003e \n\n    print(x)\n)\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 21, 2017 8:36:37 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nst: Array[org.apache.spark.sql.types.StructField] \u003d Array(StructField(UID,LongType,true), StructField(well,StructType(StructField(UID,LongType,true), StructField(wellbore,StructType(StructField(UID,LongType,true), StructField(Value,LongType,true)),true)),true))\n\n\n\n\u003cconsole\u003e:32: error: not found: value x\n       st.map(x -\u003e\n              ^\n\n\n\n\u003cconsole\u003e:34: error: not found: value x\n           print(x)\n                 ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500035935392_462473951",
+      "id": "20170714-073855_826359418",
+      "dateCreated": "Jul 14, 2017 7:38:55 AM",
+      "dateStarted": "Jul 21, 2017 8:36:37 PM",
+      "dateFinished": "Jul 21, 2017 8:36:38 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n\n\n",
+      "user": "user1",
+      "dateUpdated": "Jul 21, 2017 11:16:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500686812743_-1648749323",
+      "id": "20170721-202652_169526383",
+      "dateCreated": "Jul 21, 2017 8:26:52 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Stucts in R",
+  "id": "2CQM9YMP5",
+  "angularObjects": {
+    "2CMXHQSCJ:shared_process": [],
+    "2CNTV9PFZ:shared_process": [],
+    "2CQ46DPCP:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKYBMVHP:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
