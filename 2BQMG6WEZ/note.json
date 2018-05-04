@@ -3,7 +3,8 @@
     {
       "title": "Load deps",
       "text": "%dep\nz.reset\nz.addRepo(\"hbase-spark\").url(\"https://repository.apache.org/content/repositories/snapshots/\")\nz.load(\"org.apache.hbase:hbase-spark:2.0.0-SNAPSHOT\")",
-      "dateUpdated": "Jun 12, 2016 5:13:40 PM",
+      "user": "user1",
+      "dateUpdated": "May 2, 2018 9:46:21 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -16,22 +17,40 @@
           "scatter": {}
         },
         "enabled": true,
-        "title": true
+        "title": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@1de79f91\n"
+          }
+        ]
+      },
+      "apps": [],
       "jobName": "paragraph_1465768765863_-1839375360",
       "id": "20160612-165925_631379268",
       "dateCreated": "Jun 12, 2016 4:59:25 PM",
-      "status": "READY",
+      "dateStarted": "May 2, 2018 9:46:21 AM",
+      "dateFinished": "May 2, 2018 9:47:02 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Import deps",
       "text": "%spark\nimport org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer",
-      "dateUpdated": "Jun 12, 2016 5:13:58 PM",
+      "user": "user1",
+      "dateUpdated": "May 2, 2018 9:47:28 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -45,22 +64,39 @@
         },
         "enabled": true,
         "editorMode": "ace/mode/scala",
-        "title": true
+        "title": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        }
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\n"
+          }
+        ]
+      },
+      "apps": [],
       "jobName": "paragraph_1465768787914_1418324226",
       "id": "20160612-165947_1682512204",
       "dateCreated": "Jun 12, 2016 4:59:47 PM",
-      "status": "READY",
+      "dateStarted": "May 2, 2018 9:47:28 AM",
+      "dateFinished": "May 2, 2018 9:48:20 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Grab  snapshot from HBase and create SQL table",
-      "text": "%spark\n\n//create a Hbase conf file and set parameters for the scan\nval conf2 \u003d HBaseConfiguration.create()\nconf2.set(TableInputFormat.INPUT_TABLE, \"test\")\nconf2.set(TableInputFormat.SCAN_ROW_START, \"Simulation Examples.Functions.Ramp1-146491000\")\n\n//create a RDD from the table scan\nval hBaseRDD2 \u003d sc.newAPIHadoopRDD(conf2, classOf[org.apache.hadoop.hbase.mapreduce.TableInputFormat],\nclassOf[org.apache.hadoop.hbase.io.ImmutableBytesWritable],\nclassOf[org.apache.hadoop.hbase.client.Result])\n\n//exract and print triple\nval i2 \u003d hBaseRDD2.map(row \u003d\u003e{\n    //retrieve the latest values from each offset cell    \n    for(i \u003c- 0 to 9 if row._2.containsNonEmptyColumn(i.toString.getBytes(),\"id\".getBytes())) yield {\n        //String.valueOf(Array(0).map(_.toByte),\"v\".getBytes()).map(_.toChar)\n        //String.valueOf(row._2.getValue(\"9\".getBytes(),\"id\".getBytes()).map(_.toChar))\n        ((String.valueOf(row._2.getValue(i.toString.getBytes,\"id\".getBytes()).map(_.toChar))),\n        (String.valueOf(row._2.getValue(i.toString.getBytes,\"v\".getBytes()).map(_.toChar))),\n        (String.valueOf(row._2.getValue(i.toString.getBytes,\"t\".getBytes()).map(_.toChar))))\n    }\n\n//convert to RDD[List[List[String]]] \n}).map(n \u003d\u003e {\n    n.toList\n})\n\ncase class Sample( id:String, v:String, t:String)\nval i3 \u003d i2.flatMap(n \u003d\u003e {\n    n\n}).map(n \u003d\u003e \n    Sample(n._1,n._2,n._3)\n)\ni3.count\ni3.toDF().registerTempTable(\"ts_data2\")",
-      "dateUpdated": "Jun 12, 2016 5:14:19 PM",
+      "text": "%spark\n\n//create a Hbase conf file and set parameters for the scan\nval conf2 \u003d HBaseConfiguration.create()\nconf2.set(TableInputFormat.INPUT_TABLE, \"timeseries\")\nconf2.set(TableInputFormat.SCAN_ROW_START, \"r1-2018/05/02 08:41:56\")\n\n//create a RDD from the table scan\nval hBaseRDD2 \u003d sc.newAPIHadoopRDD(conf2, classOf[org.apache.hadoop.hbase.mapreduce.TableInputFormat],\nclassOf[org.apache.hadoop.hbase.io.ImmutableBytesWritable],\nclassOf[org.apache.hadoop.hbase.client.Result])\n\n//exract and print triple\nval i2 \u003d hBaseRDD2.map(row \u003d\u003e{\n    //retrieve the latest values from each offset cell    \n    for(i \u003c- 0 to 9 if row._2.containsNonEmptyColumn(i.toString.getBytes(),\"id\".getBytes())) yield {\n        //String.valueOf(Array(0).map(_.toByte),\"v\".getBytes()).map(_.toChar)\n        //String.valueOf(row._2.getValue(\"9\".getBytes(),\"id\".getBytes()).map(_.toChar))\n        ((String.valueOf(row._2.getValue(i.toString.getBytes,\"id\".getBytes()).map(_.toChar))),\n        (String.valueOf(row._2.getValue(i.toString.getBytes,\"v\".getBytes()).map(_.toChar))),\n        (String.valueOf(row._2.getValue(i.toString.getBytes,\"t\".getBytes()).map(_.toChar))))\n    }\n\n//convert to RDD[List[List[String]]] \n}).map(n \u003d\u003e {\n    n.toList\n})\n\ncase class Sample( id:String, v:String, t:String)\nval i3 \u003d i2.flatMap(n \u003d\u003e {\n    n\n}).map(n \u003d\u003e \n    Sample(n._1,n._2,n._3)\n)\ni3.count\ni3.toDF().registerTempTable(\"ts_data2\")",
+      "user": "user1",
+      "dateUpdated": "May 2, 2018 9:48:35 AM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -74,16 +110,32 @@
         },
         "enabled": true,
         "editorMode": "ace/mode/scala",
-        "title": true
+        "title": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        }
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "conf2: org.apache.hadoop.conf.Configuration \u003d Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, yarn-default.xml, yarn-site.xml, hdfs-default.xml, hdfs-site.xml, hbase-default.xml, hbase-site.xml\nhBaseRDD2: org.apache.spark.rdd.RDD[(org.apache.hadoop.hbase.io.ImmutableBytesWritable, org.apache.hadoop.hbase.client.Result)] \u003d NewHadoopRDD[0] at newAPIHadoopRDD at \u003cconsole\u003e:38\ni2: org.apache.spark.rdd.RDD[List[(String, String, String)]] \u003d MapPartitionsRDD[2] at map at \u003cconsole\u003e:51\ndefined class Sample\ni3: org.apache.spark.rdd.RDD[Sample] \u003d MapPartitionsRDD[4] at map at \u003cconsole\u003e:44\njava.io.IOException: Cannot create a record reader because of a previous error. Please look at the previous logs lines from the task\u0027s full log for more details.\n  at org.apache.hadoop.hbase.mapreduce.TableInputFormatBase.getSplits(TableInputFormatBase.java:245)\n  at org.apache.hadoop.hbase.mapreduce.TableInputFormat.getSplits(TableInputFormat.java:254)\n  at org.apache.spark.rdd.NewHadoopRDD.getPartitions(NewHadoopRDD.scala:125)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:252)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:250)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:250)\n  at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:252)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:250)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:250)\n  at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:252)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:250)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:250)\n  at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:252)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:250)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:250)\n  at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:35)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:252)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:250)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:250)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2094)\n  at org.apache.spark.rdd.RDD.count(RDD.scala:1158)\n  ... 48 elided\nCaused by: java.lang.IllegalStateException: The input format instance has not been properly initialized. Ensure you call initializeTable either in your constructor or initialize method\n  at org.apache.hadoop.hbase.mapreduce.TableInputFormatBase.getTable(TableInputFormatBase.java:553)\n  at org.apache.hadoop.hbase.mapreduce.TableInputFormatBase.getSplits(TableInputFormatBase.java:240)\n  ... 76 more\n"
+          }
+        ]
+      },
+      "apps": [],
       "jobName": "paragraph_1465768810258_-1360485573",
       "id": "20160612-170010_2057689049",
       "dateCreated": "Jun 12, 2016 5:00:10 PM",
-      "status": "READY",
+      "dateStarted": "May 2, 2018 9:48:35 AM",
+      "dateFinished": "May 2, 2018 9:48:46 AM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -109,6 +161,7 @@
         "params": {},
         "forms": {}
       },
+      "apps": [],
       "jobName": "paragraph_1465769580501_-151132768",
       "id": "20160612-171300_1878159836",
       "dateCreated": "Jun 12, 2016 5:13:00 PM",
@@ -119,25 +172,12 @@
   "name": "HBase Historian Script 2",
   "id": "2BQMG6WEZ",
   "angularObjects": {
-    "2BQCH17EH:shared_process": [],
-    "2BKYFDS7Q:shared_process": [],
-    "2BN27KE9W:shared_process": [],
-    "2BNR2S1SA:shared_process": [],
-    "2BQSD9PWH:shared_process": [],
-    "2BNX8S4PE:shared_process": [],
-    "2BKYN4BSP:shared_process": [],
-    "2BMGY8XB1:shared_process": [],
-    "2BMJAS6GB:shared_process": [],
-    "2BQ6M2APK:shared_process": [],
-    "2BP8PS6E4:shared_process": [],
-    "2BM8TNDU6:shared_process": [],
-    "2BN3F679N:shared_process": [],
-    "2BM19HA25:shared_process": [],
-    "2BPTH31JC:shared_process": [],
-    "2BPD56EQM:shared_process": [],
-    "2BNSFTY5W:shared_process": [],
-    "2BQ8KHB3A:shared_process": [],
-    "2BQXFYNMJ:shared_process": []
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
   },
   "config": {},
   "info": {}

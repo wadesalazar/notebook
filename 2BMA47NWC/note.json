@@ -2,12 +2,13 @@
   "paragraphs": [
     {
       "text": "%md\n\nThis is a collection of notebooks to deploy with HWX SE demos\n",
-      "dateUpdated": "Jul 14, 2017 5:33:39 AM",
+      "user": "user1",
+      "dateUpdated": "May 2, 2018 2:19:51 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
         "editorMode": "ace/mode/markdown",
-        "editorHide": false,
+        "editorHide": true,
         "results": [
           {
             "graph": {
@@ -21,7 +22,10 @@
             }
           }
         ],
-        "editorSetting": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "language": "markdown"
+        },
         "tableHide": false
       },
       "settings": {
@@ -46,15 +50,15 @@
       "jobName": "paragraph_1465776446748_-1377403315",
       "id": "20160612-190726_957307491",
       "dateCreated": "Jun 12, 2016 7:07:26 PM",
-      "dateStarted": "Jun 12, 2016 7:10:09 PM",
-      "dateFinished": "Jun 12, 2016 7:10:09 PM",
+      "dateStarted": "May 2, 2018 2:19:51 PM",
+      "dateFinished": "May 2, 2018 2:19:57 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sh\ndate\n\n",
       "user": "user1",
-      "dateUpdated": "Jul 14, 2017 5:33:58 AM",
+      "dateUpdated": "May 2, 2018 2:20:00 PM",
       "config": {
         "colWidth": 12.0,
         "graph": {
@@ -84,7 +88,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "Fri Jul 14 05:33:59 CDT 2017\n"
+            "data": "Wed May  2 14:20:05 CDT 2018\n"
           }
         ]
       },
@@ -92,8 +96,8 @@
       "jobName": "paragraph_1465776479333_1946319839",
       "id": "20160612-190759_1485457114",
       "dateCreated": "Jun 12, 2016 7:07:59 PM",
-      "dateStarted": "Jul 14, 2017 5:33:58 AM",
-      "dateFinished": "Jul 14, 2017 5:33:59 AM",
+      "dateStarted": "May 2, 2018 2:20:00 PM",
+      "dateFinished": "May 2, 2018 2:20:05 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -117,11 +121,12 @@
   "name": "Forward",
   "id": "2BMA47NWC",
   "angularObjects": {
-    "2CMXHQSCJ:shared_process": [],
-    "2CNTV9PFZ:shared_process": [],
-    "2CQ46DPCP:shared_process": [],
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
     "2C4U48MY3_spark2:shared_process": [],
-    "2CKYBMVHP:shared_process": []
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
   },
   "config": {},
   "info": {}

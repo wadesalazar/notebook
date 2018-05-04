@@ -1,0 +1,138 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\n\nimport pandas as p\nimport numpy as np\n\nPrices_rdd \u003d sc.textFile(\"hdfs://europa.jupiter/tmp/Crude.csv\").map(lambda line: line.split(\",\"))\n\nPrices_df \u003d Prices_rdd.toDF([\u0027Date\u0027,\u0027Spot\u0027])\n\nPrices_df.show()",
+      "user": "user1",
+      "dateUpdated": "May 2, 2018 10:59:37 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+-----+\n|     Date| Spot|\n+---------+-----+\n| 2-Jan-86|25.56|\n| 3-Jan-86|   26|\n| 6-Jan-86|26.53|\n| 7-Jan-86|25.85|\n| 8-Jan-86|25.87|\n| 9-Jan-86|26.03|\n|10-Jan-86|25.65|\n|13-Jan-86|25.08|\n|14-Jan-86|24.97|\n|15-Jan-86|25.18|\n|16-Jan-86|23.98|\n|17-Jan-86|23.63|\n|20-Jan-86|21.33|\n|21-Jan-86|20.61|\n|22-Jan-86|20.25|\n|23-Jan-86|19.93|\n|24-Jan-86|19.45|\n|27-Jan-86|20.87|\n|28-Jan-86|19.45|\n|29-Jan-86|19.61|\n+---------+-----+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525275969892_1310154092",
+      "id": "20180502-104609_2020938971",
+      "dateCreated": "May 2, 2018 10:46:09 AM",
+      "dateStarted": "May 2, 2018 10:59:37 AM",
+      "dateFinished": "May 2, 2018 10:59:38 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\n\nnp.array(Prices_df.select([\u0027Date\u0027,\u0027Spot\u0027]).collect())\n\n",
+      "user": "user1",
+      "dateUpdated": "May 2, 2018 10:55:06 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "array([[u\u00272-Jan-86\u0027, u\u002725.56\u0027],\n       [u\u00273-Jan-86\u0027, u\u002726\u0027],\n       [u\u00276-Jan-86\u0027, u\u002726.53\u0027],\n       ...,\n       [u\u002719-Apr-18\u0027, u\u002768.3\u0027],\n       [u\u002720-Apr-18\u0027, u\u002768.26\u0027],\n       [u\u002723-Apr-18\u0027, u\u002767.61\u0027]], dtype\u003d\u0027\u003cU9\u0027)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525276398940_-1188190727",
+      "id": "20180502-105318_1942914366",
+      "dateCreated": "May 2, 2018 10:53:18 AM",
+      "dateStarted": "May 2, 2018 10:55:06 AM",
+      "dateFinished": "May 2, 2018 10:55:07 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nPrices_pdf \u003d Prices_df.toPandas()\n\nPrices_pdf.describe()",
+      "user": "user1",
+      "dateUpdated": "May 2, 2018 10:56:52 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "             Date  Spot\ncount        8264  8264\nunique       8264  4550\ntop     18-Dec-13      \nfreq            1   117\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525276506067_-2007772638",
+      "id": "20180502-105506_1862377483",
+      "dateCreated": "May 2, 2018 10:55:06 AM",
+      "dateStarted": "May 2, 2018 10:56:52 AM",
+      "dateFinished": "May 2, 2018 10:56:53 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "user1",
+      "dateUpdated": "May 2, 2018 10:55:50 AM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1525276550953_2118182622",
+      "id": "20180502-105550_268728653",
+      "dateCreated": "May 2, 2018 10:55:50 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Python Checks",
+  "id": "2DDKYV1U2",
+  "angularObjects": {
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
+    "2C4U48MY3_spark2:shared_process": [],
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

@@ -4,7 +4,7 @@
       "title": "Does Spark Run ?",
       "text": "%spark2\n\nsc.version\n\n\n(1 to 10)\n\n// Multiply each by 3\n(1 to 10).map(_ * 3)\n\n// flatMap flattens the result\n(1 to 10).map(n \u003d\u003e List(n, n * 2))\n\n\n(1 to 10).flatMap(n \u003d\u003e List(n, n * 2))",
       "user": "user1",
-      "dateUpdated": "Jul 22, 2017 12:20:06 AM",
+      "dateUpdated": "May 2, 2018 2:26:18 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -14,11 +14,7 @@
             "graph": {
               "mode": "table",
               "height": 300.0,
-              "optionOpen": false,
-              "keys": [],
-              "values": [],
-              "groups": [],
-              "scatter": {}
+              "optionOpen": false
             }
           }
         ],
@@ -37,7 +33,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "\nres40: String \u003d 2.1.1.2.6.1.0-129\n\nres43: scala.collection.immutable.Range.Inclusive \u003d Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)\n\nres46: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(3, 6, 9, 12, 15, 18, 21, 24, 27, 30)\n\nres49: scala.collection.immutable.IndexedSeq[List[Int]] \u003d Vector(List(1, 2), List(2, 4), List(3, 6), List(4, 8), List(5, 10), List(6, 12), List(7, 14), List(8, 16), List(9, 18), List(10, 20))\n\nres52: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(1, 2, 2, 4, 3, 6, 4, 8, 5, 10, 6, 12, 7, 14, 8, 16, 9, 18, 10, 20)\n"
+            "data": "res0: String \u003d 2.2.0.2.6.4.0-91\nres3: scala.collection.immutable.Range.Inclusive \u003d Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)\nres6: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(3, 6, 9, 12, 15, 18, 21, 24, 27, 30)\nres9: scala.collection.immutable.IndexedSeq[List[Int]] \u003d Vector(List(1, 2), List(2, 4), List(3, 6), List(4, 8), List(5, 10), List(6, 12), List(7, 14), List(8, 16), List(9, 18), List(10, 20))\nres12: scala.collection.immutable.IndexedSeq[Int] \u003d Vector(1, 2, 2, 4, 3, 6, 4, 8, 5, 10, 6, 12, 7, 14, 8, 16, 9, 18, 10, 20)\n"
           }
         ]
       },
@@ -50,8 +46,8 @@
       "jobName": "paragraph_1465770412294_-1431953634",
       "id": "20160612-172652_365679851",
       "dateCreated": "Jun 12, 2016 5:26:52 PM",
-      "dateStarted": "Jul 22, 2017 12:20:06 AM",
-      "dateFinished": "Jul 22, 2017 12:20:09 AM",
+      "dateStarted": "May 2, 2018 2:26:19 PM",
+      "dateFinished": "May 2, 2018 2:27:11 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -242,11 +238,12 @@
   "name": "Pre Flight",
   "id": "2BPEJKSP6",
   "angularObjects": {
-    "2CMXHQSCJ:shared_process": [],
-    "2CNTV9PFZ:shared_process": [],
-    "2CQ46DPCP:shared_process": [],
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
     "2C4U48MY3_spark2:shared_process": [],
-    "2CKYBMVHP:shared_process": []
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
   },
   "config": {},
   "info": {}

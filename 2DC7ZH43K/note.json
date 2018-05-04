@@ -3,15 +3,16 @@
     {
       "title": "Load deps (only required for versions less than 0.6)",
       "text": "%dep\nz.reset\nz.addRepo(\"hbase-spark\").url(\"https://repository.apache.org/content/repositories/snapshots/\")\nz.load(\"org.apache.hbase:hbase-spark:2.0.0-SNAPSHOT\")",
-      "user": "user1",
-      "dateUpdated": "May 2, 2018 11:41:38 AM",
+      "dateUpdated": "May 2, 2018 11:52:29 AM",
       "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "title": true,
-        "editorHide": false,
-        "editorMode": "ace/mode/scala",
         "tableHide": false,
+        "editorSetting": {
+          "language": "scala"
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "title": true,
         "results": [
           {
             "graph": {
@@ -25,9 +26,7 @@
             }
           }
         ],
-        "editorSetting": {
-          "language": "scala"
-        }
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -42,31 +41,28 @@
           }
         ]
       },
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "DepInterpreter(%dep) deprecated. Remove dependencies and repositories through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Add repository through GUI interpreter menu instead.\nDepInterpreter(%dep) deprecated. Load dependency through GUI interpreter menu instead.\nres0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@401c5efc\n"
-      },
       "apps": [],
-      "jobName": "paragraph_1465768436914_-1202630133",
+      "jobName": "paragraph_1525279949800_761017768",
       "id": "20160612-165356_324797851",
-      "dateCreated": "Jun 12, 2016 4:53:56 PM",
-      "dateStarted": "May 2, 2018 11:41:38 AM",
-      "dateFinished": "May 2, 2018 11:41:58 AM",
-      "status": "FINISHED",
+      "dateCreated": "May 2, 2018 11:52:29 AM",
+      "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Grab a snapshot of the HBase table",
-      "text": "//add the repo hbase-spark \"https://repository.apache.org/content/repositories/snapshots/\n//and the dep org.apache.hbase:hbase-spark:2.0.0-SNAPSHOT\n\nimport org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\n\n//create a Hbase conf file and set parameters for the scan\nval conf2 \u003d HBaseConfiguration.create()\nconf2.set(TableInputFormat.INPUT_TABLE, \"timeseries\")\nconf2.set(\"hbase.zookeeper.quorum\", \"europa.jupiter\");\nconf2.set(\"zookeeper.znode.parent\", \"/hbase-unsecure\")\nconf2.setInt(\"hbase.zookeeper.property.clientPort\", 2181);\n\n\n//adjust these values to match your query\n//remember these are seconds so if you used milliseconds do so here\nconf2.set(TableInputFormat.SCAN_ROW_START, \"r1-2018/05/02 08:41:56\")\nconf2.set(TableInputFormat.SCAN_ROW_STOP, \"r1-2018/05/02 08:42:13\")\n\n//create a RDD from the table scan\nval hBaseRDD2 \u003d sc.newAPIHadoopRDD(conf2, classOf[org.apache.hadoop.hbase.mapreduce.TableInputFormat],\nclassOf[org.apache.hadoop.hbase.io.ImmutableBytesWritable],\nclassOf[org.apache.hadoop.hbase.client.Result])\n\n//exract and print triple\nval i2 \u003d hBaseRDD2.map(row \u003d\u003e{\n    //retrieve the latest values from each cell    \n    ((String.valueOf(row._2.getValue(\"cf\".getBytes,\"id\".getBytes()).map(_.toChar))),\n    (String.valueOf(row._2.getValue(\"cf\".getBytes,\"v\".getBytes()).map(_.toChar))),\n    (String.valueOf(row._2.getValue(\"cf\".getBytes,\"t\".getBytes()).map(_.toChar))))\n\n})",
+      "text": "//add the repo hbase-spark \"https://repository.apache.org/content/repositories/snapshots/\n//and the dep org.apache.hbase:hbase-spark:2.0.0-SNAPSHOT\n\nimport org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.client.{HBaseAdmin, Result}\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\n\n//create a Hbase conf file and set parameters for the scan\nval conf2 \u003d HBaseConfiguration.create()\nconf2.set(TableInputFormat.INPUT_TABLE, \"timeseries\")\nconf2.set(\"hbase.zookeeper.quorum\", \"europa.jupiter\");\nconf2.set(\"zookeeper.znode.parent\", \"/hbase-unsecure\")\nconf2.setInt(\"hbase.zookeeper.property.clientPort\", 2181);\n\n//adjust these values to match your query\n//remember these are seconds so if you used milliseconds do so here\nconf2.set(TableInputFormat.SCAN_ROW_START, \"r1-2018/05/02 08:41:56\")\nconf2.set(TableInputFormat.SCAN_ROW_STOP, \"r1-2018/05/02 08:42:13\")\n\n\n//create a RDD from the table scan\nval hBaseRDD2 \u003d sc.newAPIHadoopRDD(conf2, classOf[org.apache.hadoop.hbase.mapreduce.TableInputFormat],\nclassOf[org.apache.hadoop.hbase.io.ImmutableBytesWritable],\nclassOf[org.apache.hadoop.hbase.client.Result])\n\n//exract and print triple\nval i2 \u003d hBaseRDD2.map(row \u003d\u003e{\n    //retrieve the latest values from each cell    \n    ((String.valueOf(row._2.getValue(\"cf\".getBytes,\"id\".getBytes()).map(_.toChar))),\n    (String.valueOf(row._2.getValue(\"cf\".getBytes,\"v\".getBytes()).map(_.toChar))),\n    (String.valueOf(row._2.getValue(\"cf\".getBytes,\"t\".getBytes()).map(_.toChar))))\n\n})\n",
       "user": "user1",
-      "dateUpdated": "May 2, 2018 11:48:07 AM",
+      "dateUpdated": "May 2, 2018 11:59:13 AM",
       "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala"
+        },
         "colWidth": 12.0,
-        "enabled": true,
         "editorMode": "ace/mode/scala",
-        "title": true,
         "editorHide": false,
+        "title": true,
         "results": [
           {
             "graph": {
@@ -80,48 +76,42 @@
             }
           }
         ],
-        "editorSetting": {
-          "language": "scala"
-        },
-        "tableHide": false
+        "enabled": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
       "results": {
-        "code": "SUCCESS",
+        "code": "ERROR",
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\nconf2: org.apache.hadoop.conf.Configuration \u003d Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, yarn-default.xml, yarn-site.xml, hdfs-default.xml, hdfs-site.xml, hbase-default.xml, hbase-site.xml\nhBaseRDD2: org.apache.spark.rdd.RDD[(org.apache.hadoop.hbase.io.ImmutableBytesWritable, org.apache.hadoop.hbase.client.Result)] \u003d NewHadoopRDD[2] at newAPIHadoopRDD at \u003cconsole\u003e:52\ni2: org.apache.spark.rdd.RDD[(String, String, String)] \u003d MapPartitionsRDD[3] at map at \u003cconsole\u003e:54\n"
+            "data": "import org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.client.{HBaseAdmin, Result}\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\nconf2: org.apache.hadoop.conf.Configuration \u003d Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, yarn-default.xml, yarn-site.xml, hdfs-default.xml, hdfs-site.xml, hbase-default.xml, hbase-site.xml\nhBaseRDD2: org.apache.spark.rdd.RDD[(org.apache.hadoop.hbase.io.ImmutableBytesWritable, org.apache.hadoop.hbase.client.Result)] \u003d NewHadoopRDD[4] at newAPIHadoopRDD at \u003cconsole\u003e:84\ni2: org.apache.spark.rdd.RDD[(String, String, String)] \u003d MapPartitionsRDD[5] at map at \u003cconsole\u003e:85\njava.io.IOException: Cannot create a record reader because of a previous error. Please look at the previous logs lines from the task\u0027s full log for more details.\n  at org.apache.hadoop.hbase.mapreduce.TableInputFormatBase.getSplits(TableInputFormatBase.java:245)\n  at org.apache.hadoop.hbase.mapreduce.TableInputFormat.getSplits(TableInputFormat.java:254)\n  at org.apache.spark.rdd.NewHadoopRDD.getPartitions(NewHadoopRDD.scala:125)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:252)\n  at org.apache.spark.rdd.RDD$$anonfun$partitions$2.apply(RDD.scala:250)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.rdd.RDD.partitions(RDD.scala:250)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2094)\n  at org.apache.spark.rdd.RDD.count(RDD.scala:1158)\n  ... 60 elided\nCaused by: java.lang.IllegalStateException: The input format instance has not been properly initialized. Ensure you call initializeTable either in your constructor or initialize method\n  at org.apache.hadoop.hbase.mapreduce.TableInputFormatBase.getTable(TableInputFormatBase.java:553)\n  at org.apache.hadoop.hbase.mapreduce.TableInputFormatBase.getSplits(TableInputFormatBase.java:240)\n  ... 68 more\n"
           }
         ]
       },
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "import org.apache.spark._\nimport org.apache.spark.rdd.NewHadoopRDD\nimport org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}\nimport org.apache.hadoop.hbase.mapreduce.TableInputFormat\nimport java.nio.ByteBuffer\nconf2: org.apache.hadoop.conf.Configuration \u003d Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, yarn-default.xml, yarn-site.xml, hdfs-default.xml, hdfs-site.xml, hbase-default.xml, hbase-site.xml\nhBaseRDD2: org.apache.spark.rdd.RDD[(org.apache.hadoop.hbase.io.ImmutableBytesWritable, org.apache.hadoop.hbase.client.Result)] \u003d NewHadoopRDD[0] at newAPIHadoopRDD at \u003cconsole\u003e:38\ni2: org.apache.spark.rdd.RDD[(String, String, String)] \u003d MapPartitionsRDD[1] at map at \u003cconsole\u003e:40\n"
-      },
       "apps": [],
-      "jobName": "paragraph_1465768445088_-66451307",
+      "jobName": "paragraph_1525279949801_760633019",
       "id": "20160612-165405_1734641709",
-      "dateCreated": "Jun 12, 2016 4:54:05 PM",
-      "dateStarted": "May 2, 2018 11:48:07 AM",
-      "dateFinished": "May 2, 2018 11:48:14 AM",
-      "status": "FINISHED",
+      "dateCreated": "May 2, 2018 11:52:29 AM",
+      "dateStarted": "May 2, 2018 11:56:55 AM",
+      "dateFinished": "May 2, 2018 11:57:01 AM",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Print a few tuples",
       "text": "i2.count\n//print each triple to the screen  \ni2.collect.take(1).foreach(ln \u003d\u003e {\n        println(ln._1 + \" \" + ln._2 + \" \" + ln._3)\n})",
-      "user": "user1",
-      "dateUpdated": "May 2, 2018 11:48:18 AM",
+      "dateUpdated": "May 2, 2018 11:52:29 AM",
       "config": {
+        "editorSetting": {
+          "language": "scala"
+        },
         "colWidth": 12.0,
-        "enabled": true,
-        "title": true,
+        "editorMode": "ace/mode/scala",
         "editorHide": false,
+        "title": true,
         "results": [
           {
             "graph": {
@@ -135,10 +125,7 @@
             }
           }
         ],
-        "editorSetting": {
-          "language": "scala"
-        },
-        "editorMode": "ace/mode/scala"
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -153,30 +140,23 @@
           }
         ]
       },
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "res7: Long \u003d 19\nSimulation Examples.Functions.Ramp1 95 1465944177501\n"
-      },
       "apps": [],
-      "jobName": "paragraph_1465768484559_1395792083",
+      "jobName": "paragraph_1525279949801_760633019",
       "id": "20160612-165444_700622531",
-      "dateCreated": "Jun 12, 2016 4:54:44 PM",
-      "dateStarted": "May 2, 2018 11:48:18 AM",
-      "dateFinished": "May 2, 2018 11:48:20 AM",
-      "status": "ERROR",
+      "dateCreated": "May 2, 2018 11:52:29 AM",
+      "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Cast to DF with the provided schema class and then register as temp table",
       "text": "// Provide a class to describe the schema of the RDD\ncase class Sample( id:String, v:String, t:String)\nval i3 \u003d i2.map(n \u003d\u003e \n    Sample(n._1,n._2,n._3)\n)\n\n// Convert RDD to a dataframe then to a table \ni3.toDF().registerTempTable(\"ts_data\")",
-      "dateUpdated": "Jun 27, 2016 1:01:18 PM",
+      "dateUpdated": "May 2, 2018 11:52:29 AM",
       "config": {
         "colWidth": 12.0,
-        "enabled": true,
         "editorMode": "ace/mode/scala",
-        "title": true,
         "editorHide": false,
+        "title": true,
         "results": [
           {
             "graph": {
@@ -189,7 +169,8 @@
               "scatter": {}
             }
           }
-        ]
+        ],
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -204,30 +185,23 @@
           }
         ]
       },
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "defined class Sample\ni3: org.apache.spark.rdd.RDD[Sample] \u003d MapPartitionsRDD[2] at map at \u003cconsole\u003e:44\n"
-      },
       "apps": [],
-      "jobName": "paragraph_1465768493384_1959479870",
+      "jobName": "paragraph_1525279949802_761787266",
       "id": "20160612-165453_2075621431",
-      "dateCreated": "Jun 12, 2016 4:54:53 PM",
-      "dateStarted": "Jun 27, 2016 1:01:20 PM",
-      "dateFinished": "Jun 27, 2016 1:02:52 PM",
-      "status": "FINISHED",
+      "dateCreated": "May 2, 2018 11:52:29 AM",
+      "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Query Table",
       "text": "%sql\n\nselect * from ts_data\n\nORDER BY t, id",
-      "dateUpdated": "Jun 30, 2016 3:39:14 PM",
+      "dateUpdated": "May 2, 2018 11:52:29 AM",
       "config": {
         "colWidth": 12.0,
-        "enabled": true,
         "editorMode": "ace/mode/scala",
-        "title": true,
         "editorHide": false,
+        "title": true,
         "results": [
           {
             "graph": {
@@ -274,7 +248,8 @@
               }
             }
           }
-        ]
+        ],
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -289,25 +264,21 @@
           }
         ]
       },
-      "result": {
-        "code": "SUCCESS",
-        "type": "TABLE",
-        "msg": "id\tv\tt\nSimulation Examples.Functions.Ramp1\t95\t1465944177501\nSimulation Examples.Functions.Ramp1\t67\t1465944221118\nSimulation Examples.Functions.Ramp1\t51\t1465944231258\nSimulation Examples.Functions.Ramp1\t87\t1465944240882\nSimulation Examples.Functions.Ramp1\t75\t1465944251038\nSimulation Examples.Functions.Ramp1\t59\t1465944261177\nSimulation Examples.Functions.Ramp1\t95\t1465944270802\nSimulation Examples.Functions.Ramp1\t79\t1465944280958\nSimulation Examples.Functions.Ramp1\t67\t1465944291097\nSimulation Examples.Functions.Ramp1\t51\t1465944301237\nSimulation Examples.Functions.Ramp1\t87\t1465944310878\nSimulation Examples.Functions.Ramp1\t71\t1465944321017\nSimulation Examples.Functions.Ramp1\t59\t1465944331157\nSimulation Examples.Functions.Ramp1\t43\t1465944341297\nSimulation Examples.Functions.Ramp1\t75\t1465944350940\nSimulation Examples.Functions.Ramp1\t59\t1465944361079\nSimulation Examples.Functions.Ramp1\t47\t1465944371219\nSimulation Examples.Functions.Ramp1\t83\t1465944380860\nSimulation Examples.Functions.Ramp1\t67\t1465944390999\n"
-      },
       "apps": [],
-      "jobName": "paragraph_1465768525627_-1409366175",
+      "jobName": "paragraph_1525279949802_761787266",
       "id": "20160612-165525_1825474479",
-      "dateCreated": "Jun 12, 2016 4:55:25 PM",
-      "dateStarted": "Jun 26, 2016 6:49:06 PM",
-      "dateFinished": "Jun 26, 2016 6:49:08 PM",
-      "status": "FINISHED",
+      "dateCreated": "May 2, 2018 11:52:29 AM",
+      "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md \n\nnotes:\n\nassumes there is a hbase table called timeseries\n\n",
-      "dateUpdated": "Jun 26, 2016 6:17:34 PM",
+      "dateUpdated": "May 2, 2018 11:52:29 AM",
       "config": {
         "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": false,
         "graph": {
           "mode": "table",
           "height": 300.0,
@@ -317,24 +288,23 @@
           "groups": [],
           "scatter": {}
         },
-        "enabled": true,
-        "editorMode": "ace/mode/markdown",
-        "editorHide": false
+        "enabled": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1465768653842_1102106079",
+      "jobName": "paragraph_1525279949802_761787266",
       "id": "20160612-165733_1301932104",
-      "dateCreated": "Jun 12, 2016 4:57:33 PM",
+      "dateCreated": "May 2, 2018 11:52:29 AM",
       "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "HBase Historian Script 1",
-  "id": "2BP8ZY84F",
+  "name": "HBase Historian Script 3",
+  "id": "2DC7ZH43K",
   "angularObjects": {
     "2CHS8UYQQ:shared_process": [],
     "2C8A4SZ9T_livy2:shared_process": [],

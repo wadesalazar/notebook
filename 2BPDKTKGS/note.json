@@ -1,25 +1,18 @@
 {
   "paragraphs": [
     {
-      "text": "%sh\n\ndate\n\n\n",
-      "dateUpdated": "Jun 30, 2016 4:05:55 PM",
+      "text": "%dep\nz.reset\nz.addRepo(\"hortonworks\").url(\"http://repo.hortonworks.com/content/repositories/releases/\")\nz.load(\"com.hortonworks:shc-core:1.1.0-2.1-s_2.11\")",
+      "user": "user1",
+      "dateUpdated": "May 2, 2018 6:59:32 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
-        "editorMode": "ace/mode/sh",
-        "results": [
-          {
-            "graph": {
-              "mode": "table",
-              "height": 300.0,
-              "optionOpen": false,
-              "keys": [],
-              "values": [],
-              "groups": [],
-              "scatter": {}
-            }
-          }
-        ]
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false
       },
       "settings": {
         "params": {},
@@ -30,28 +23,23 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "Thu Jun 30 16:05:55 CDT 2016\n"
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@1bd21f0b\n"
           }
         ]
       },
-      "result": {
-        "code": "SUCCESS",
-        "type": "TEXT",
-        "msg": "Thu Jun 30 16:05:55 CDT 2016\n"
-      },
       "apps": [],
-      "jobName": "paragraph_1467319920962_-1336617771",
-      "id": "20160630-155200_2114001232",
-      "dateCreated": "Jun 30, 2016 3:52:00 PM",
-      "dateStarted": "Jun 30, 2016 4:05:55 PM",
-      "dateFinished": "Jun 30, 2016 4:05:56 PM",
+      "jobName": "paragraph_1525275048959_-376488731",
+      "id": "20180502-103048_1485843776",
+      "dateCreated": "May 2, 2018 10:30:48 AM",
+      "dateStarted": "May 2, 2018 6:59:33 PM",
+      "dateFinished": "May 2, 2018 6:59:50 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\n\nsc.version\n",
+      "text": "%spark\nimport org.apache.spark.sql.{SQLContext, _}\nimport org.apache.spark.sql.execution.datasources.hbase._\nimport org.apache.spark.{SparkConf, SparkContext}\nimport spark.sqlContext.implicits._\n\n",
       "user": "user1",
-      "dateUpdated": "Jul 14, 2017 7:25:08 AM",
+      "dateUpdated": "May 4, 2018 11:13:08 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -71,7 +59,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "\nres19: String \u003d 2.1.1.2.6.1.0-129\n"
+            "data": "import org.apache.spark.sql.{SQLContext, _}\nimport org.apache.spark.sql.execution.datasources.hbase._\nimport org.apache.spark.{SparkConf, SparkContext}\nimport spark.sqlContext.implicits._\n"
           }
         ]
       },
@@ -79,36 +67,155 @@
       "jobName": "paragraph_1467319932222_214320369",
       "id": "20160630-155212_327228712",
       "dateCreated": "Jun 30, 2016 3:52:12 PM",
-      "dateStarted": "Jul 14, 2017 7:25:08 AM",
-      "dateFinished": "Jul 14, 2017 7:25:09 AM",
+      "dateStarted": "May 4, 2018 11:13:08 AM",
+      "dateFinished": "May 4, 2018 11:13:09 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\n",
+      "text": "%spark\n\ndef catalog \u003d s\"\"\"{\n         |\"table\":{\"namespace\":\"default\", \"name\":\"timeseries\"},\n         |\"rowkey\":\"key\",\n         |\"columns\":{\n           |\"col0\":{\"cf\":\"rowkey\", \"col\":\"key\", \"type\":\"string\"},\n           |\"col1\":{\"cf\":\"cf\", \"col\":\"t\", \"type\":\"int\"},\n           |\"col2\":{\"cf\":\"cf\", \"col\":\"v\", \"type\":\"float\"},\n           |\"col3\":{\"cf\":\"cf\", \"col\":\"id\", \"type\":\"string\"}\n         |}\n       |}\"\"\".stripMargin",
       "user": "user1",
-      "dateUpdated": "Jul 14, 2017 7:25:08 AM",
-      "config": {},
+      "dateUpdated": "May 4, 2018 11:23:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala",
+        "lineNumbers": true
+      },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "catalog: String\n"
+          }
+        ]
       },
       "apps": [],
       "jobName": "paragraph_1500035108750_1459951061",
       "id": "20170714-072508_32251424",
       "dateCreated": "Jul 14, 2017 7:25:08 AM",
+      "dateStarted": "May 4, 2018 11:23:50 AM",
+      "dateFinished": "May 4, 2018 11:23:50 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\n\ndef withCatalog(cat: String): DataFrame \u003d {\n  sqlContext\n  .read\n  .options(Map(HBaseTableCatalog.tableCatalog-\u003ecat))\n  .format(\"org.apache.spark.sql.execution.datasources.hbase\")\n  .load()\n}",
+      "user": "user1",
+      "dateUpdated": "May 4, 2018 11:23:52 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": false,
+        "lineNumbers": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "withCatalog: (cat: String)org.apache.spark.sql.DataFrame\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525274032307_317160985",
+      "id": "20180502-101352_234176955",
+      "dateCreated": "May 2, 2018 10:13:52 AM",
+      "dateStarted": "May 4, 2018 11:23:52 AM",
+      "dateFinished": "May 4, 2018 11:23:52 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval df \u003d withCatalog(catalog.toString)\n\ndf.show()\n \n ",
+      "user": "user1",
+      "dateUpdated": "May 4, 2018 11:23:56 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "df: org.apache.spark.sql.DataFrame \u003d [col0: string, col1: int ... 2 more fields]\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 7.0 failed 4 times, most recent failure: Lost task 0.3 in stage 7.0 (TID 22, europa.jupiter, executor 7): org.apache.hadoop.hbase.client.RetriesExhaustedException: Failed after attempts\u003d36, exceptions:\nFri May 04 11:29:42 CDT 2018, null, java.net.SocketTimeoutException: callTimeout\u003d60000, callDuration\u003d68163: row \u0027\u0027 on table \u0027timeseries\u0027 at region\u003dtimeseries,,1525255944838.be13a559facef1529ed008f4540ffb97., hostname\u003deuropa.jupiter,16020,1525450255841, seqNum\u003d2964\n\n\tat org.apache.hadoop.hbase.client.RpcRetryingCallerWithReadReplicas.throwEnrichedException(RpcRetryingCallerWithReadReplicas.java:271)\n\tat org.apache.hadoop.hbase.client.ScannerCallableWithReplicas.call(ScannerCallableWithReplicas.java:195)\n\tat org.apache.hadoop.hbase.client.ScannerCallableWithReplicas.call(ScannerCallableWithReplicas.java:59)\n\tat org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithoutRetries(RpcRetryingCaller.java:200)\n\tat org.apache.hadoop.hbase.client.ClientScanner.call(ClientScanner.java:320)\n\tat org.apache.hadoop.hbase.client.ClientScanner.nextScanner(ClientScanner.java:295)\n\tat org.apache.hadoop.hbase.client.ClientScanner.initializeScannerInConstruction(ClientScanner.java:160)\n\tat org.apache.hadoop.hbase.client.ClientScanner.\u003cinit\u003e(ClientScanner.java:155)\n\tat org.apache.hadoop.hbase.client.HTable.getScanner(HTable.java:821)\n\tat org.apache.spark.sql.execution.datasources.hbase.TableResource$$anonfun$getScanner$1.apply(HBaseResources.scala:145)\n\tat org.apache.spark.sql.execution.datasources.hbase.TableResource$$anonfun$getScanner$1.apply(HBaseResources.scala:145)\n\tat org.apache.spark.sql.execution.datasources.hbase.ReferencedResource$class.releaseOnException(HBaseResources.scala:77)\n\tat org.apache.spark.sql.execution.datasources.hbase.TableResource.releaseOnException(HBaseResources.scala:120)\n\tat org.apache.spark.sql.execution.datasources.hbase.TableResource.getScanner(HBaseResources.scala:144)\n\tat org.apache.spark.sql.execution.datasources.hbase.HBaseTableScanRDD$$anonfun$9.apply(HBaseTableScan.scala:282)\n\tat org.apache.spark.sql.execution.datasources.hbase.HBaseTableScanRDD$$anonfun$9.apply(HBaseTableScan.scala:281)\n\tat scala.collection.parallel.mutable.ParArray$Map.leaf(ParArray.scala:657)\n\tat scala.collection.parallel.Task$$anonfun$tryLeaf$1.apply$mcV$sp(Tasks.scala:49)\n\tat scala.collection.parallel.Task$$anonfun$tryLeaf$1.apply(Tasks.scala:48)\n\tat scala.collection.parallel.Task$$anonfun$tryLeaf$1.apply(Tasks.scala:48)\n\tat scala.collection.parallel.Task$class.tryLeaf(Tasks.scala:51)\n\tat scala.collection.parallel.mutable.ParArray$Map.tryLeaf(ParArray.scala:648)\n\tat scala.collection.parallel.AdaptiveWorkStealingTasks$WrappedTask$class.compute(Tasks.scala:152)\n\tat scala.collection.parallel.AdaptiveWorkStealingForkJoinTasks$WrappedTask.compute(Tasks.scala:443)\n\tat scala.concurrent.forkjoin.RecursiveAction.exec(RecursiveAction.java:160)\n\tat scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)\n\tat scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)\n\tat scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)\n\tat scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)\nCaused by: java.net.SocketTimeoutException: callTimeout\u003d60000, callDuration\u003d68163: row \u0027\u0027 on table \u0027timeseries\u0027 at region\u003dtimeseries,,1525255944838.be13a559facef1529ed008f4540ffb97., hostname\u003deuropa.jupiter,16020,1525450255841, seqNum\u003d2964\n\tat org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithRetries(RpcRetryingCaller.java:159)\n\tat org.apache.hadoop.hbase.client.ResultBoundedCompletionService$QueueingFuture.run(ResultBoundedCompletionService.java:64)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:745)\nCaused by: org.apache.hadoop.hbase.ipc.RemoteWithExtrasException(org.apache.hadoop.hbase.NotServingRegionException): org.apache.hadoop.hbase.NotServingRegionException: Region timeseries,,1525255944838.be13a559facef1529ed008f4540ffb97. is not online on europa.jupiter,16020,1525451056854\n\tat org.apache.hadoop.hbase.regionserver.HRegionServer.getRegionByEncodedName(HRegionServer.java:3093)\n\tat org.apache.hadoop.hbase.regionserver.RSRpcServices.getRegion(RSRpcServices.java:1015)\n\tat org.apache.hadoop.hbase.regionserver.RSRpcServices.scan(RSRpcServices.java:2380)\n\tat org.apache.hadoop.hbase.protobuf.generated.ClientProtos$ClientService$2.callBlockingMethod(ClientProtos.java:32385)\n\tat org.apache.hadoop.hbase.ipc.RpcServer.call(RpcServer.java:2150)\n\tat org.apache.hadoop.hbase.ipc.CallRunner.run(CallRunner.java:112)\n\tat org.apache.hadoop.hbase.ipc.RpcExecutor$Handler.run(RpcExecutor.java:187)\n\tat org.apache.hadoop.hbase.ipc.RpcExecutor$Handler.run(RpcExecutor.java:167)\n\n\tat org.apache.hadoop.hbase.ipc.RpcClientImpl.call(RpcClientImpl.java:1248)\n\tat org.apache.hadoop.hbase.ipc.AbstractRpcClient.callBlockingMethod(AbstractRpcClient.java:213)\n\tat org.apache.hadoop.hbase.ipc.AbstractRpcClient$BlockingRpcChannelImplementation.callBlockingMethod(AbstractRpcClient.java:287)\n\tat org.apache.hadoop.hbase.protobuf.generated.ClientProtos$ClientService$BlockingStub.scan(ClientProtos.java:32651)\n\tat org.apache.hadoop.hbase.client.ScannerCallable.openScanner(ScannerCallable.java:372)\n\tat org.apache.hadoop.hbase.client.ScannerCallable.call(ScannerCallable.java:199)\n\tat org.apache.hadoop.hbase.client.ScannerCallable.call(ScannerCallable.java:62)\n\tat org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithoutRetries(RpcRetryingCaller.java:200)\n\tat org.apache.hadoop.hbase.client.ScannerCallableWithReplicas$RetryingRPC.call(ScannerCallableWithReplicas.java:346)\n\tat org.apache.hadoop.hbase.client.ScannerCallableWithReplicas$RetryingRPC.call(ScannerCallableWithReplicas.java:320)\n\tat org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithRetries(RpcRetryingCaller.java:126)\n\t... 4 more\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1517)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1505)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1504)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1504)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:814)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:814)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:814)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1732)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1687)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1676)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:630)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2029)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2050)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2069)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:336)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collectFromPlan(Dataset.scala:2861)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2150)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2150)\n  at org.apache.spark.sql.Dataset$$anonfun$55.apply(Dataset.scala:2842)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:65)\n  at org.apache.spark.sql.Dataset.withAction(Dataset.scala:2841)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2150)\n  at org.apache.spark.sql.Dataset.take(Dataset.scala:2363)\n  at org.apache.spark.sql.Dataset.showString(Dataset.scala:241)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:637)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:596)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:605)\n  ... 58 elided\nCaused by: org.apache.hadoop.hbase.client.RetriesExhaustedException: Failed after attempts\u003d36, exceptions:\nFri May 04 11:29:42 CDT 2018, null, java.net.SocketTimeoutException: callTimeout\u003d60000, callDuration\u003d68163: row \u0027\u0027 on table \u0027timeseries\u0027 at region\u003dtimeseries,,1525255944838.be13a559facef1529ed008f4540ffb97., hostname\u003deuropa.jupiter,16020,1525450255841, seqNum\u003d2964\n\n  at org.apache.hadoop.hbase.client.RpcRetryingCallerWithReadReplicas.throwEnrichedException(RpcRetryingCallerWithReadReplicas.java:271)\n  at org.apache.hadoop.hbase.client.ScannerCallableWithReplicas.call(ScannerCallableWithReplicas.java:195)\n  at org.apache.hadoop.hbase.client.ScannerCallableWithReplicas.call(ScannerCallableWithReplicas.java:59)\n  at org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithoutRetries(RpcRetryingCaller.java:200)\n  at org.apache.hadoop.hbase.client.ClientScanner.call(ClientScanner.java:320)\n  at org.apache.hadoop.hbase.client.ClientScanner.nextScanner(ClientScanner.java:295)\n  at org.apache.hadoop.hbase.client.ClientScanner.initializeScannerInConstruction(ClientScanner.java:160)\n  at org.apache.hadoop.hbase.client.ClientScanner.\u003cinit\u003e(ClientScanner.java:155)\n  at org.apache.hadoop.hbase.client.HTable.getScanner(HTable.java:821)\n  at org.apache.spark.sql.execution.datasources.hbase.TableResource$$anonfun$getScanner$1.apply(HBaseResources.scala:145)\n  at org.apache.spark.sql.execution.datasources.hbase.TableResource$$anonfun$getScanner$1.apply(HBaseResources.scala:145)\n  at org.apache.spark.sql.execution.datasources.hbase.ReferencedResource$class.releaseOnException(HBaseResources.scala:77)\n  at org.apache.spark.sql.execution.datasources.hbase.TableResource.releaseOnException(HBaseResources.scala:120)\n  at org.apache.spark.sql.execution.datasources.hbase.TableResource.getScanner(HBaseResources.scala:144)\n  at org.apache.spark.sql.execution.datasources.hbase.HBaseTableScanRDD$$anonfun$9.apply(HBaseTableScan.scala:282)\n  at org.apache.spark.sql.execution.datasources.hbase.HBaseTableScanRDD$$anonfun$9.apply(HBaseTableScan.scala:281)\n  at scala.collection.parallel.mutable.ParArray$Map.leaf(ParArray.scala:657)\n  at scala.collection.parallel.Task$$anonfun$tryLeaf$1.apply$mcV$sp(Tasks.scala:49)\n  at scala.collection.parallel.Task$$anonfun$tryLeaf$1.apply(Tasks.scala:48)\n  at scala.collection.parallel.Task$$anonfun$tryLeaf$1.apply(Tasks.scala:48)\n  at scala.collection.parallel.Task$class.tryLeaf(Tasks.scala:51)\n  at scala.collection.parallel.mutable.ParArray$Map.tryLeaf(ParArray.scala:648)\n  at scala.collection.parallel.AdaptiveWorkStealingTasks$WrappedTask$class.compute(Tasks.scala:152)\n  at scala.collection.parallel.AdaptiveWorkStealingForkJoinTasks$WrappedTask.compute(Tasks.scala:443)\n  at scala.concurrent.forkjoin.RecursiveAction.exec(RecursiveAction.java:160)\n  at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)\n  at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)\n  at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)\n  at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)\nCaused by: java.net.SocketTimeoutException: callTimeout\u003d60000, callDuration\u003d68163: row \u0027\u0027 on table \u0027timeseries\u0027 at region\u003dtimeseries,,1525255944838.be13a559facef1529ed008f4540ffb97., hostname\u003deuropa.jupiter,16020,1525450255841, seqNum\u003d2964\n  at org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithRetries(RpcRetryingCaller.java:159)\n  at org.apache.hadoop.hbase.client.ResultBoundedCompletionService$QueueingFuture.run(ResultBoundedCompletionService.java:64)\n  at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n  at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n  at java.lang.Thread.run(Thread.java:745)\nCaused by: org.apache.hadoop.hbase.ipc.RemoteWithExtrasException: org.apache.hadoop.hbase.NotServingRegionException: Region timeseries,,1525255944838.be13a559facef1529ed008f4540ffb97. is not online on europa.jupiter,16020,1525451056854\n\tat org.apache.hadoop.hbase.regionserver.HRegionServer.getRegionByEncodedName(HRegionServer.java:3093)\n\tat org.apache.hadoop.hbase.regionserver.RSRpcServices.getRegion(RSRpcServices.java:1015)\n\tat org.apache.hadoop.hbase.regionserver.RSRpcServices.scan(RSRpcServices.java:2380)\n\tat org.apache.hadoop.hbase.protobuf.generated.ClientProtos$ClientService$2.callBlockingMethod(ClientProtos.java:32385)\n\tat org.apache.hadoop.hbase.ipc.RpcServer.call(RpcServer.java:2150)\n\tat org.apache.hadoop.hbase.ipc.CallRunner.run(CallRunner.java:112)\n\tat org.apache.hadoop.hbase.ipc.RpcExecutor$Handler.run(RpcExecutor.java:187)\n\tat org.apache.hadoop.hbase.ipc.RpcExecutor$Handler.run(RpcExecutor.java:167)\n\n  at org.apache.hadoop.hbase.ipc.RpcClientImpl.call(RpcClientImpl.java:1248)\n  at org.apache.hadoop.hbase.ipc.AbstractRpcClient.callBlockingMethod(AbstractRpcClient.java:213)\n  at org.apache.hadoop.hbase.ipc.AbstractRpcClient$BlockingRpcChannelImplementation.callBlockingMethod(AbstractRpcClient.java:287)\n  at org.apache.hadoop.hbase.protobuf.generated.ClientProtos$ClientService$BlockingStub.scan(ClientProtos.java:32651)\n  at org.apache.hadoop.hbase.client.ScannerCallable.openScanner(ScannerCallable.java:372)\n  at org.apache.hadoop.hbase.client.ScannerCallable.call(ScannerCallable.java:199)\n  at org.apache.hadoop.hbase.client.ScannerCallable.call(ScannerCallable.java:62)\n  at org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithoutRetries(RpcRetryingCaller.java:200)\n  at org.apache.hadoop.hbase.client.ScannerCallableWithReplicas$RetryingRPC.call(ScannerCallableWithReplicas.java:346)\n  at org.apache.hadoop.hbase.client.ScannerCallableWithReplicas$RetryingRPC.call(ScannerCallableWithReplicas.java:320)\n  at org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithRetries(RpcRetryingCaller.java:126)\n  ... 4 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525274611036_543449178",
+      "id": "20180502-102331_75055128",
+      "dateCreated": "May 2, 2018 10:23:31 AM",
+      "dateStarted": "May 4, 2018 11:23:57 AM",
+      "dateFinished": "May 4, 2018 11:29:43 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\ndf.groupby(window)\n",
+      "user": "user1",
+      "dateUpdated": "May 4, 2018 11:21:14 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1525281635121_-463249943",
+      "id": "20180502-122035_1598132103",
+      "dateCreated": "May 2, 2018 12:20:35 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "Untitled Note 1",
+  "name": "Spark-Hbase Connector",
   "id": "2BPDKTKGS",
   "angularObjects": {
-    "2CMXHQSCJ:shared_process": [],
-    "2CNTV9PFZ:shared_process": [],
-    "2CQ46DPCP:shared_process": [],
+    "2CHS8UYQQ:shared_process": [],
+    "2C8A4SZ9T_livy2:shared_process": [],
+    "2CK8A9MEG:shared_process": [],
     "2C4U48MY3_spark2:shared_process": [],
-    "2CKYBMVHP:shared_process": []
+    "2CKAY1A8Y:shared_process": [],
+    "2CKEKWY8Z:shared_process": []
   },
   "config": {},
   "info": {}
